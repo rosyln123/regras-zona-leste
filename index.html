@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regras Zona Leste RP</title>
+    <!-- Carrega o Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Carrega a fonte Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* Estilo base com a fonte Inter */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0F172A; /* Azul escuro */
+        }
+        /* Scrollbar personalizada */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1E293B; /* Fundo da scrollbar */
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #38BDF8; /* Cor da scrollbar (azul claro) */
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0EA5E9; /* Cor ao passar o mouse */
+        }
+        /* Remove setas do input number (para o filtro de perfil) */
+        input[type='number']::-webkit-inner-spin-button,
+        input[type='number']::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        
+        /* Estilos para o conteúdo das regras (textos formatados) */
+        .rule-content {
+            color: #CBD5E1; /* cinza-claro */
+        }
+        .rule-content h3 {
+            font-size: 1.5rem; /* 24px */
+            font-weight: 700;
+            color: #38BDF8; /* azul-claro */
+            margin-top: 1.5rem; /* 24px */
+            margin-bottom: 0.75rem; /* 12px */
+            border-bottom: 1px solid #334155;
+            padding-bottom: 0.25rem;
+        }
+        .rule-content h4 {
+            font-size: 1.25rem; /* 20px */
+            font-weight: 600;
+            color: #7DD3FC; /* azul-claro mais suave */
+            margin-top: 1.25rem; /* 20px */
+            margin-bottom: 0.5rem; /* 8px */
+        }
+        .rule-content p {
+            font-size: 1rem; /* 16px */
+            line-height: 1.75; /* 28px */
+            margin-bottom: 1rem; /* 16px */
+        }
+        .rule-content ul {
+            list-style-type: disc;
+            padding-left: 2rem; /* 32px */
+            margin-bottom: 1rem; /* 16px */
+        }
+        .rule-content li {
+            margin-bottom: 0.5rem; /* 8px */
+            line-height: 1.75;
+        }
+        .rule-content strong {
+            color: #F8FAFC; /* branco */
+            font-weight: 600;
+        }
+        .rule-content em {
+            font-style: italic;
+            color: #94A3B8;
+        }
+        /* Alertas e blocos de destaque */
+        .rule-content .info-box {
+            background-color: #1E293B;
+            border-left: 4px solid #38BDF8;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 0.5rem 0.5rem 0;
+        }
+        .rule-content .warning-box {
+            background-color: #1E293B;
+            border-left: 4px solid #F87171; /* Vermelho */
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 0.5rem 0.5rem 0;
+        }
+        .rule-content .success-box {
+            background-color: #1E293B;
+            border-left: 4px solid #34D399; /* Verde */
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 0.5rem 0.5rem 0;
+        }
+    </style>
+</head>
+<body class="text-slate-200">
+
+    <!-- Container principal -->
+    <div class="flex h-screen overflow-hidden">
+
+        <!-- Barra Lateral -->
+        <aside class="w-80 h-full overflow-y-auto bg-slate-900 shadow-lg p-6 flex flex-col space-y-4 scrollbar-thin">
+            
+            <!-- Logo/Título -->
+            <div class="flex items-center space-x-3 mb-4">
+                <svg class="w-10 h-10 text-sky-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" />
+                </svg>
+                <h1 class="text-2xl font-bold text-white">Zona Leste RP</h1>
+            </div>
+
+            <!-- Filtro de Perfil -->
+            <div class="relative">
+                <label for="profile-filter" class="text-sm font-medium text-sky-400">Qual seu perfil na cidade?</label>
+                <select id="profile-filter" class="w-full mt-1 p-2 rounded-lg bg-slate-800 border border-slate-700 text-white focus:outline-none focus:ring-2 focus:ring-sky-500">
+                    <option value="todos">Mostrar Todas as Regras</option>
+                    <option value="cidadao">[ Novo Cidadão ]</option>
+                    <option value="policial">[ Policial ]</option>
+                    <option value="faccao">[ Membro de Facção ]</option>
+                    <option value="legal">[ Emprego Legal / SAMU ]</option>
+                </select>
+            </div>
+
+            <!-- Navegação -->
+            <nav class="flex-grow space-y-2">
+                
+                <!-- TÓPICO 1: GERAL -->
+                <h3 class="text-xs uppercase text-slate-500 font-semibold tracking-wider pt-4" data-profile="todos cidadao policial faccao legal">Tópico 1: Geral</h3>
+                <div class="nav-link" data-page="inicio" data-profile="todos cidadao policial faccao legal">
+                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" /></svg>
+                    <span>Início de Tudo</span>
+                </div>
+                <div class="nav-link" data-page="regras-basicas" data-profile="todos cidadao policial faccao legal">
+                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" /></svg>
+                    <span>Regras Básicas</span>
+                </div>
+                <div class="nav-link" data-page="zona-safe" data-profile="todos cidadao policial faccao legal">
+                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    <span>Área Segura (Zona Safe)</span>
+                </div>
+                <div class="nav-link" data-page="sistema-punicao" data-profile="todos cidadao policial faccao">
+                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" /></svg>
+                    <span>Sistema de Punição</span>
+                </div>
+                <div class="nav-link" data-page="guia-punicoes" data-profile="todos cidadao policial faccao legal">
+                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" /></svg>
+                    <span>Guia Rápido de Punições</span>
+                </div>
+                <div class="nav-link" data-page="punicao-faccao" data-profile="todos faccao">
+                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m-4.682 2.72a3 3 0 01-4.682-2.72 9.094 9.094 0 013.741.479m-4.682 2.72L5.636 5.636m12.728 12.728L5.636 5.636" /></svg>
+                    <span>Sistema de Punição Facção</span>
+                </div>
+                <div class="nav-link" data-page="regras-personagem" data-profile="todos cidadao policial faccao legal">
+                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" /></svg>
+                    <span>Regras de Personagem</span>
+                </div>
+                <div class="nav-link" data-page="seguranca-servidor" data-profile="todos cidadao policial faccao legal">
+                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" /></svg>
+                    <span>Segurança do Servidor</span>
+                </div>
+
+                <!-- TÓPICO 2: CORPORAÇÕES -->
+                <h3 class="text-xs uppercase text-slate-500 font-semibold tracking-wider pt-4" data-profile="todos policial legal">Tópico 2: Corporações</h3>
+                <div class="nav-link" data-page="empregos-legais" data-profile="todos legal">
+                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h6.75M9 11.25h6.75M9 15.75h6.75M9 20.25h6.75" /></svg>
+                    <span>Regras - Empregos Legais</span>
+                </div>
+                <div class="nav-link" data-page="hospital" data-profile="todos legal">
+                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" /></svg>
+                    <span>Hospital (SAMU)</span>
+                </div>
+                <div class="nav-link" data-page="mecanico" data-profile="todos legal">
+                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.83-5.83M11.42 15.17l-4.24-4.24m5.83 5.83l-4.24-4.24m-6.062 0l4.24 4.24m-4.24-4.24l-4.24 4.24m6.062-4.24l4.24 4.24M18 12l-3-3m-3.75-3.75L9 12m-3.75 3.75L9 12m-3 3l3-3m0 0l-3 3m3-3l3 3" /></svg>
+                    <span>Mecânico</span>
+                </div>
+                <!-- Menu Policiais (Accordion) -->
+                <div class="accordion-toggle" data-profile="todos policial">
+                    <div class="nav-link-header">
+                        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m6.75-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" /></svg>
+                        <span>Policiais</span>
+                    </div>
+                    <svg class="w-4 h-4 accordion-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
+                </div>
+                <div class="accordion-content hidden" data-profile="todos policial">
+                    <div class="nav-link" data-page="policia-alistamento" data-profile="todos policial"><span>Alistamento e Carreira</span></div>
+                    <div class="nav-link" data-page="policia-hierarquia" data-profile="todos policial"><span>Hierarquia e Disciplina</span></div>
+                    <div class="nav-link" data-page="policia-radio" data-profile="todos policial"><span>Comunicação (Rádio)</span></div>
+                    <div class="nav-link" data-page="policia-pop" data-profile="todos policial"><span>Procedimentos (POP)</span></div>
+                    <div class="nav-link" data-page="policia-patrulha" data-profile="todos policial"><span>Regras de Patrulha</span></div>
+                    <div class="nav-link" data-page="policia-rocam" data-profile="todos policial"><span>ROCAM</span></div>
+                    <div class="nav-link" data-page="policia-tatica" data-profile="todos policial"><span>Força Tática</span></div>
+                </div>
+
+                <!-- TÓPICO 3: CRIMES -->
+                <h3 class="text-xs uppercase text-slate-500 font-semibold tracking-wider pt-4" data-profile="todos faccao">Tópico 3: Crimes</h3>
+                <!-- Menu Facções (Accordion) -->
+                <div class="accordion-toggle" data-profile="todos faccao">
+                    <div class="nav-link-header">
+                        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" /></svg>
+                        <span>Facções Criminosas</span>
+                    </div>
+                    <svg class="w-4 h-4 accordion-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
+                </div>
+                <div class="accordion-content hidden" data-profile="todos faccao">
+                    <div class="nav-link" data-page="crime-acoesrua" data-profile="todos faccao"><span>Regras Ações de Rua</span></div>
+                    <div class="nav-link" data-page="crime-perseguicao" data-profile="todos faccao"><span>Regras de Perseguição</span></div>
+                    <!-- <div class="nav-link" data-page="crime-facvfac" data-profile="todos faccao"><span>Invasão Fac vs Fac</span></div> -->
+                    <div class="nav-link" data-page="crime-acoesfechada" data-profile="todos faccao"><span>Ações Fechada</span></div>
+                    <div class="nav-link" data-page="crime-sequestro" data-profile="todos faccao"><span>Sequestro</span></div>
+                    <div class="nav-link" data-page="crime-resgate" data-profile="todos faccao"><span>Resgate de Prisioneiros</span></div>
+                </div>
+
+            </nav>
+        </aside>
+
+        <!-- Área de Conteúdo -->
+        <main id="content-area" class="flex-1 h-full overflow-y-auto bg-slate-800 scrollbar-thin">
+            
+            <!-- Banner Superior -->
+            <div class="w-full h-48 bg-slate-900 overflow-hidden relative shadow-lg">
+                <!-- Imagem corrigida -->
+                <img src="https://iili.io/Kss4Pj9.jpg" alt="Banner Zona Leste RP" class="w-full h-full object-contain">
+            </div>
+
+            <!-- Conteúdo da Página -->
+            <div class="p-8 md:p-12 max-w-7xl mx-auto">
+
+                <!-- Botão Voltar ao Topo -->
+                <button id="scrollTopButton" class="hidden fixed bottom-8 right-8 bg-sky-500 text-white p-3 rounded-full shadow-lg hover:bg-sky-600 transition-all duration-300 z-50">
+                    <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+                    </svg>
+                </button>
+
+                <!-- Seção: Início de Tudo (Página Inicial) -->
+                <section id="inicio" class="page-content">
+                    <h2 class="text-3xl font-bold mb-6 text-sky-400">Regulamento Geral e Termos</h2>
+                    <div class="rule-content">
+                        <h3>Bem-vindo à Zona Leste!</h3>
+                        <p>A equipe de administração da <strong>Zona Leste Roleplay</strong> está imensamente feliz em receber você em nossa cidade. Nosso objetivo é criar um ambiente de Roleplay (RP) sério, divertido e imersivo para todos os jogadores, veteranos ou novatos.</p>
+                        <p>Para garantir que a experiência de todos seja positiva, criamos este regulamento. Ele é a base de conduta da nossa cidade. A leitura, compreensão e aceitação destas regras são <strong>obrigatórias</strong> para todos os cidadãos.</p>
+                        <p class="info-box">O ingresso na cidade (aprovação na Whitelist) significa que você <strong>leu, compreendeu e aceitou</strong> todos os termos aqui descritos. O desconhecimento das regras não isenta ninguém das punições.</p>
+
+                        <h3>CAPÍTULO I – DA ADESÃO E ACEITAÇÃO</h3>
+                        <p><strong>Artigo 1º</strong> – A participação no Servidor Zona Leste RP é voluntária, mas condicionada ao cumprimento integral dos presentes Termos.</p>
+                        <p><strong>Artigo 2º</strong> – A realização e aprovação da Whitelist equivalem à assinatura digital deste documento, com aceitação automática e irretratável de todas as cláusulas aqui descritas.</p>
+                        <p><strong>Artigo 3º</strong> – A alegação de desconhecimento das normas não isenta o cidadão de suas obrigações.</p>
+
+                        <h3>CAPÍTULO VII – DAS ATUALIZAÇÕES</h3>
+                        <p><strong>Artigo 16º</strong> – A Direção da Cidade Zona Leste RP reserva-se ao direito de alterar, modificar ou complementar os presentes Termos a qualquer tempo, sem necessidade de aviso individual.</p>
+                        <p><strong>Artigo 17º</strong> – É dever do cidadão acompanhar os comunicados oficiais e manter-se atualizado acerca das normas em vigor.</p>
+
+                        <h3>CAPÍTULO VIII – DAS DISPOSIÇÕES FINAIS</h3>
+                        <p><strong>Artigo 18º</strong> – A permanência na Cidade constitui privilégio concedido pela Administração, e não um direito adquirido.</p>
+                        <p><strong>Artigo 19º</strong> – O não cumprimento dos presentes Termos acarretará sanções imediatas, de acordo com a gravidade da infração cometida.</p>
+                        <p><strong>Artigo 20º</strong> – Ao realizar sua Whitelist, o cidadão declara formalmente estar ciente e em total concordância com este Regulamento, assumindo todos os compromissos e obrigações aqui descritos.</p>
+                        <p class="success-box">📜 Assim sendo, o ingresso e permanência na Cidade Zona Leste representam aceitação plena e irretratável de todos os dispositivos aqui contidos, constituindo compromisso solene entre o cidadão e a Direção do Servidor.</p>
+                    </div>
+                </section>
+
+                <!-- Seção: Regras Básicas -->
+                <section id="regras-basicas" class="page-content hidden">
+                    <h2 class="text-3xl font-bold mb-6 text-sky-400">Regras Básicas de Conduta</h2>
+                    <div class="rule-content">
+                        <h3>CAPÍTULO II – DAS REGRAS DE CONDUTA</h3>
+                        <p><strong>Artigo 4º</strong> – O cidadão compromete-se a manter conduta respeitosa, ética e em conformidade com os princípios do roleplay, sendo vedadas:</p>
+                        <ul>
+                            <li>A utilização de trapaças, exploits, programas ilícitos ou modificações não autorizadas;</li>
+                            <li>A prática de assédio, discriminação, injúria ou qualquer forma de violência verbal ou psicológica;</li>
+                            <li>O uso indevido de bugs ou falhas técnicas para obtenção de vantagens;</li>
+                            <li>Qualquer atitude que comprometa a harmonia, estabilidade ou reputação do Servidor.</li>
+                        </ul>
+                        <p><strong>Artigo 5º</strong> – A reincidência em condutas nocivas será tratada com máxima severidade, podendo culminar em banimento permanente.</p>
+
+                        <h3>PROIBIÇÃO DE FORÇAR RP</h3>
+                        <p class="warning-box">Forçar RP é qualquer ação que obrigue o outro jogador a participar de uma situação sem que ele tenha chance de reação ou escolha, quebrando a imersão.</p>
+                        <h4>POLÍCIA</h4>
+                        <ul>
+                            <li>Não pode abordar sem a fundada suspeita. Em outras palavras, em patrulhamento de rotina sem infrações ou crimes, não é genuíno realizar abordagens por "tirocínio", configurando Abuso de Autoridade.</li>
+                        </ul>
+                        <h4>BANDIDO</h4>
+                        <ul>
+                            <li>O cidadão que usar de meios, veículos ou circunstâncias vantajosas para debochar, desafiar ou transtornar uma unidade policial (empinar moto, fazer drift, dar dedo do meio) não será só penalizado, mas também dará o direito da Polícia tomar medidas não letais para inibir a situação.</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Seção: Área Segura (Zona Safe) -->
+                <section id="zona-safe" class="page-content hidden">
+                    <h2 class="text-3xl font-bold mb-6 text-sky-400">Área Segura (Zona Safe)</h2>
+                    <div class="rule-content">
+                        <h3>O que é uma Zona Segura?</h3>
+                        <p>Zonas Seguras (ou "Safe Zones") são locais designados onde **qualquer tipo de ação hostil é estritamente proibida**. O objetivo é garantir que os jogadores possam realizar atividades essenciais (como spawnar, ir ao hospital, customizar carros) sem medo de serem atacados.</p>
+                        <p>Exemplos comuns de Zonas Seguras incluem (mas não se limitam a):</p>
+                        <ul>
+                            <li>Spawn (Praças iniciais)</li>
+                            <li>Hospital (Interior e arredores imediatos)</li>
+                            <li>Garagens e Locadoras de Veículos</li>
+                            <li>Oficinas de Customização (Interior)</li>
+                            <li>Prefeitura</li>
+                        </ul>
+                        <p class="warning-box">Ações proibidas incluem: roubo, sequestro, agressão, assassinato, e qualquer forma de provocação que vise iniciar um conflito.</p>
+                        
+                        <h3>Voz de Assalto e Fuga para Área Safe</h3>
+                        <p>Caso seja dada voz de assalto a um player e este fuja para a praça, garagem ou qualquer área de spawn, essa ação será considerada <strong>anti Amor à Vida (Anti-RP)</strong>.</p>
+                        <p>O suspeito poderá ser abatido (mesmo dentro da área) e poderão ser tomadas as medidas cabíveis pela Administração da cidade.</p>
+                    </div>
+                </section>
+
+                <!-- Seção: Sistema de Punição -->
+                <section id="sistema-punicao" class="page-content hidden">
+                    <h2 class="text-3xl font-bold mb-6 text-sky-400">Sistema de Punição</h2>
+                    <div class="rule-content">
+                        <h3>CAPÍTULO III – DAS SANÇÕES</h3>
+                        <p><strong>Artigo 6º</strong> – As sanções aplicáveis pela Administração incluem, mas não se limitam a:</p>
+                        <ul>
+                            <li>Advertência verbal ou escrita;</li>
+                            <li>Suspensão temporária;</li>
+                            <li>Banimento parcial (de determinadas funções);</li>
+                            <li>Banimento permanente e definitivo.</li>
+                        </ul>
+                        <p><strong>Artigo 7º</strong> – As penalidades serão aplicadas conforme análise da Administração, de acordo com a gravidade da conduta.</p>
+
+                        <h3 class="mt-8">Análise de Provas (Contra-Prova)</h3>
+                        <p class="warning-box">Para a remoção de advertências (ADV) ou banimentos, a contra-prova apresentada pelo jogador deve ser em formato de vídeo e ter no <strong>mínimo 3 (três) minutos</strong> de duração, mostrando todo o contexto da ação.</p>
+                        <p><strong>Prints (capturas de tela) não serão aceitos como prova principal</strong> para contestação de punições, servindo apenas como material de apoio ao vídeo.</p>
+                    </div>
+                </section>
+
+                <!-- Seção: Guia Rápido de Punições -->
+                <section id="guia-punicoes" class="page-content hidden">
+                    <h2 class="text-3xl font-bold mb-6 text-sky-400">Guia Rápido de Punições</h2>
+                    <div class="rule-content">
+                        <p>Esta ferramenta é um guia rápido para consulta de infrações comuns. Todas as infrações listadas abaixo, quando comprovadas, resultarão em <strong>Ban de 1 dia + Advertência (ADV)</strong>.</p>
+                        
+                        <div class="mb-6">
+                            <label for="punishment-selector" class="block text-sm font-medium text-sky-400 mb-2">Selecione a Infração:</label>
+                            <select id="punishment-selector" class="w-full max-w-md p-2 rounded-lg bg-slate-800 border border-slate-700 text-white focus:outline-none focus:ring-2 focus:ring-sky-500">
+                                <option value="select">-- Selecione uma opção --</option>
+                                <option value="rdm">RDM (Random Deathmatch)</option>
+                                <option value="vdm">VDM (Vehicle Deathmatch)</option>
+                                <option value="copbait">Cop Baiting</option>
+                                <option value="antirp">Anti-RP (Geral)</option>
+                                <option value="safezone">Ação em Safe Zone</option>
+                            </select>
+                        </div>
+
+                        <div id="punishmentDetails" class="hidden">
+                            <div id="rdm-desc" class="punishment-info hidden p-4 bg-slate-700 rounded-lg">
+                                <h3>RDM (Random Deathmatch)</h3>
+                                <p><strong>Descrição:</strong> Matar ou atacar outro jogador sem um motivo de RP válido, sem interação prévia ou fora de uma ação autorizada.</p>
+                                <p class="warning-box"><strong>Sanção Padrão:</strong> Ban de 1 dia + Advertência (ADV).</p>
+                            </div>
+                            <div id="vdm-desc" class="punishment-info hidden p-4 bg-slate-700 rounded-lg">
+                                <h3>VDM (Vehicle Deathmatch)</h3>
+                                <p><strong>Descrição:</strong> Usar um veículo como arma para atropelar e matar ou ferir jogadores intencionalmente e sem motivo de RP (ex: atropelar pessoas na praça).</p>
+                                <p class="warning-box"><strong>Sanção Padrão:</strong> Ban de 1 dia + Advertência (ADV).</p>
+                            </div>
+                            <div id="copbait-desc" class="punishment-info hidden p-4 bg-slate-700 rounded-lg">
+                                <h3>Cop Baiting</h3>
+                                <p><strong>Descrição:</strong> Provocar a polícia intencionalmente (dar dedo, empinar, buzinar, passar em alta velocidade) apenas para iniciar uma perseguição, sem um objetivo de RP maior.</p>
+                                <p class="warning-box"><strong>Sanção Padrão:</strong> Ban de 1 dia + Advertência (ADV).</p>
+                            </div>
+                            <div id="antirp-desc" class="punishment-info hidden p-4 bg-slate-700 rounded-lg">
+                                <h3>Anti-RP (Geral)</h3>
+                                <p><strong>Descrição:</strong> Qualquer ação que quebre a imersão e o "Amor à Vida". Exemplos: fugir para safe zone após voz de assalto, não valorizar a vida em abordagens, pular de locais altos para fugir.</p>
+                                <p class="warning-box"><strong>Sanção Padrão:</strong> Ban de 1 dia + Advertência (ADV).</p>
+                            </div>
+                            <div id="safezone-desc" class="punishment-info hidden p-4 bg-slate-700 rounded-lg">
+                                <h3>Ação em Safe Zone</h3>
+                                <p><strong>Descrição:</strong> Iniciar qualquer ação hostil (roubo, sequestro, agressão) dentro de uma área marcada como Zona Segura (Hospitais, Praças, etc.).</p>
+                                <p class="warning-box"><strong>Sanção Padrão:</strong> Ban de 1 dia + Advertência (ADV).</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Seção: Punição Facção -->
+                <section id="punicao-faccao" class="page-content hidden">
+                    <h2 class="text-3xl font-bold mb-6 text-sky-400">Sistema de Punição Facção</h2>
+                    <div>
+                        <!-- Placeholder -->
+                        <div class="flex flex-col items-center justify-center p-10 border-2 border-dashed border-gray-700 rounded-lg h-64">
+                            <svg class="w-16 h-16 text-sky-400 mb-4 opacity-50" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                            </svg>
+                            <h3 class="text-2xl font-semibold text-gray-400">Regra em Elaboração</h3>
+                            <p class="text-lg text-gray-500">Este conteúdo será adicionado em breve.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Seção: Regras de Personagem -->
+                <section id="regras-personagem" class="page-content hidden">
+                    <h2 class="text-3xl font-bold mb-6 text-sky-400">Regras de Personagem</h2>
+                    <div class="rule-content">
+                        <h3>CAPÍTULO V – DA PRIVACIDADE E UTILIZAÇÃO DE DADOS</h3>
+                        <p><strong>Artigo 11º</strong> – Ao ingressar na Cidade, o cidadão autoriza a coleta, armazenamento e utilização de seus dados, áudios, imagens, vídeos e demais registros vinculados à sua participação no Servidor.</p>
+                        <p><strong>Artigo 12º</strong> – As informações poderão ser utilizadas para:</p>
+                        <ul>
+                            <li>Pesquisas internas e aprimoramento do Servidor;</li>
+                            <li>Monitoramento de condutas e prevenção de irregularidades;</li>
+                            <li>Postagens em redes sociais, materiais de divulgação e marketing oficial;</li>
+                            <li>Preservação da ordem e cumprimento das regras estabelecidas.</li>
+                        </ul>
+                        <p><strong>Artigo 13º</strong> – O cidadão declara ciência de que tais utilizações não geram qualquer direito a indenizações ou contestações contra a Administração.</p>
+                    </div>
+                </section>
+
+                <!-- Seção: Segurança do Servidor -->
+                <section id="seguranca-servidor" class="page-content hidden">
+                    <h2 class="text-3xl font-bold mb-6 text-sky-400">Segurança do Servidor</h2>
+                    <div class="rule-content">
+                        <h3>CAPÍTULO IV – DA SEGURANÇA DO SERVIDOR</h3>
+                        <p><strong>Artigo 8º</strong> – A preservação da integridade do Servidor é prioridade máxima. O cidadão, ao aceitar estes Termos, reconhece e concorda que a Direção da Cidade poderá adotar medidas técnicas e administrativas para garantir a segurança do projeto.</p>
+                        <p><strong>Artigo 9º</strong> – Tais medidas incluem, mas não se limitam a:</p>
+                        <ul>
+                            <li>Inspeções de software e arquivos relacionados à execução do jogo;</li>
+                            <li>Solicitação de prints, gravações ou registros de atividades durante sessões de jogo;</li>
+                            <li>Acesso remoto autorizado ao dispositivo do jogador, exclusivamente para verificação de integridade e investigação de fraudes;</li>
+                            <li>Bloqueio preventivo de contas e equipamentos suspeitos de comprometer a estabilidade do Servidor.</li>
+                        </ul>
+                        <p><strong>Artigo 10º</strong> – O cidadão reconhece que tais acessos são essenciais para a segurança do Servidor, e consente de forma plena e irrevogável com sua aplicação sempre que houver necessidade.</p>
+
+                        <h3>CAPÍTULO VI – DAS RESPONSABILIDADES LEGAIS</h3>
+                        <p><strong>Artigo 14º</strong> – O cidadão compromete-se a não utilizar o Servidor como meio para práticas ilícitas ou contrárias às legislações brasileiras.</p>
+                        <p><strong>Artigo 15º</strong> – A Direção poderá cooperar com autoridades legais, caso solicitado, disponibilizando dados e registros de atividades de cidadãos envolvidos em condutas que possam configurar ilícitos penais ou civis.</p>
+                    </div>
+                </section>
+
+                <!-- Seção: Empregos Legais -->
+                <section id="empregos-legais" class="page-content hidden">
+                    <h2 class="text-3xl font-bold mb-6 text-sky-400">Regras - Empregos Legais</h2>
+                    <div class="rule-content">
+                        <h3>O Propósito dos Empregos Legais</h3>
+                        <p>Os empregos legais (Mecânico, Taxista, Lixeiro, etc.) são a espinha dorsal da economia e da vida civil na cidade. Estas regras existem para proteger a imersão e garantir que esses empregos não sejam usados como "escudo" para atividades ilegais.</p>
+                        
+                        <h3>Regras Gerais de Empregos</h3>
+                        <ul>
+                            <li><strong>Proibido Anti-RP:</strong> É estritamente proibido usar seu status ou veículo de trabalho para cometer crimes. (Ex: Usar um táxi para fugir da polícia, usar o guincho do mecânico em uma ação).</li>
+                            <li><strong>Neutralidade (quando aplicável):</strong> Empregos como Mecânico devem manter a neutralidade durante conflitos. Você não pode se recusar a consertar o carro de um policial ou de um criminoso por causa da afiliação dele.</li>
+                            <li><strong>Uso Correto do Veículo:</strong> O veículo fornecido pelo seu trabalho (caminhão de lixo, táxi, guincho) só pode ser usado durante o seu horário de serviço e para as funções do trabalho.</li>
+                            <li><strong>"Bico" Policial/Criminoso:</strong> É proibido ser policial ou membro de facção e, ao mesmo tempo, agir ativamente em um emprego legal como mecânico ou taxista. Seu personagem deve ter um foco.</li>
+                        </ul>
+                        <p class="info-box">Abusar das mecânicas de um emprego legal (ex: usar um emprego para farmar dinheiro sem fazer o RP) pode resultar em advertência ou remoção do emprego.</p>
+                    </div>
+                </section>
+
+                <!-- Seção: Hospital -->
+                <section id="hospital" class="page-content hidden">
+                    <h2 class="text-3xl font-bold mb-6 text-sky-400">Hospital (SAMU)</h2>
+                    <div class="rule-content">
+                        <h3>A Neutralidade do SAMU</h3>
+                        <p>O SAMU (Hospital) é uma organização **100% neutra** na cidade. A vida e o atendimento são as únicas prioridades. Estas regras garantem que o SAMU possa operar com segurança e eficácia.</p>
+                        
+                        <ul>
+                            <li><strong>Prioridade de Atendimento:</strong> O SAMU deve atender a todos os chamados, independentemente de quem seja (policial, civil ou criminoso). A prioridade é sempre o paciente em estado mais grave.</li>
+                            <li><strong>Imunidade em Ações:</strong> O SAMU não pode ser alvo durante ações ou trocas de tiro. Eles são uma zona neutra. Atirar em um médico é uma infração gravíssima.</li>
+                            <li><strong>Proibido "Carona":</strong> Médicos não podem dar carona para suspeitos em fuga ou ajudar na fuga de qualquer maneira.</li>
+                            <li><strong>Proibido Lootear:</strong> Médicos não podem, em hipótese alguma, lootear pacientes (mortos ou vivos).</li>
+                            <li><strong>Finalização de Ação:</strong> O SAMU só deve entrar em uma cena de tiroteio (QRT) após a polícia ou os envolvidos sinalizarem que a área está "limpa" e segura.</li>
+                        </ul>
+                        <p class="warning-box"><strong>Retirada de Órgãos:</strong> A prática de retirada de órgãos é proibida no servidor.</p>
+                        <p class="info-box">Ser do SAMU é um RP de responsabilidade. O objetivo é salvar vidas e manter a neutralidade, não se envolver nos conflitos da cidade.</p>
+                    </div>
+                </section>
+
+                <!-- Seção: Mecânico -->
+                <section id="mecanico" class="page-content hidden">
+                    <h2 class="text-3xl font-bold mb-6 text-sky-400">Regras - Mecânicos</h2>
+                    <div class="rule-content">
+                        <h3>A Neutralidade do Mecânico</h3>
+                        <p>Mecânicos são essenciais para a cidade e, assim como o SAMU, operam sob um código de <strong>neutralidade</strong>. O foco é o atendimento ao cliente e a manutenção dos veículos, não os conflitos.</p>
+                        
+                        <h3>Regras de Atendimento e Conduta</h3>
+                        <ul>
+                            <li><strong>Proibido "Escolher Lado":</strong> O mecânico não pode se recusar a atender um cliente por ele ser policial, criminoso ou de uma facção rival. O atendimento deve ser neutro.</li>
+                            <li><strong>Uso do Guincho (Veículo de Trabalho):</strong> O guincho e outros veículos da oficina são <strong>exclusivos para trabalho</strong>. É proibido usá-los para participar de fugas, bloquear passagens em ações ou para benefício próprio fora de serviço.</li>
+                            <li><strong>Proibido Atendimento em Ação:</strong> Mecânicos não devem entrar em uma zona de tiroteio (QRT) ativa para consertar ou guinchar veículos. A segurança deve ser prioridade; aguarde a liberação da cena.</li>
+                            <li><strong>Preços e Golpes:</strong> É proibido se aproveitar de jogadores (especialmente novatos) cobrando valores absurdos. A corporação deve ter uma tabela de preços ou um bom senso de valores.</li>
+                            <li><strong>Informação Privilegiada:</strong> É proibido atuar como "informante" (X9). Você não pode, por exemplo, consertar o carro de uma facção e depois ligar para a polícia e informar a localização deles (e vice-versa).</li>
+                        </ul>
+                        <p class="info-box">O mecânico que for pego auxiliando ativamente em um crime (ex: guinchando viaturas para atrapalhar a polícia) perderá sua licença e será punido por Anti-RP.</p>
+                    </div>
+                </section>
+
+                <!-- Seções da Polícia -->
+                <section id="policia-alistamento" class="page-content hidden">
+                    <h2 class="text-3xl font-bold mb-6 text-sky-400">Policiais: Alistamento e Carreira</h2>
+                    <div class="rule-content">
+                        <p class="info-box">Este documento estabelece as diretrizes, regras e procedimentos para todos os membros da corporação no servidor Zona Leste RP. O ingresso e a permanência na corporação estão condicionados à aceitação e ao cumprimento integral deste regulamento.</p>
+                        <h3>1. Requisitos de Alistamento e Carreira</h3>
+                        <ul>
+                            <li><strong>Idade Mínima:</strong> A idade mínima para ingresso em qualquer patente da corporação é de <strong>18 (dezoito) anos completos</strong>. Não haverá exceções.</li>
+                            <li><strong>Editais de Recrutamento:</strong> Os processos seletivos (Editais) para a Academia de Polícia (Soldado 2ª Classe) ocorrerão no <strong>mínimo duas vezes por mês (quinzenalmente)</strong>. As datas serão publicadas no canal oficial com antecedência.</li>
+                            <li><strong>Processo Seletivo (Edital):</strong> O ingresso não é automático. O candidato passará por:
+                                <ul>
+                                    <li>Prova Teórica: Conhecimento das regras do servidor e deste regulamento.</li>
+                                    <li>Entrevista: Avaliação psicológica e maturidade.</li>
+                                    <li>Teste de Aptidão: Testes de direção, tiro e verbalização.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Histórico Criminal do Personagem:</strong> O personagem não pode possuir antecedentes criminais graves (homicídio, tráfico, organização criminosa) no servidor para ingressar na corporação.</li>
+                        </ul>
+                    </div>
+                </section>
+                <section id="policia-hierarquia" class="page-content hidden">
+                    <h2 class="text-3xl font-bold mb-6 text-sky-400">Policiais: Hierarquia e Disciplina</h2>
+                    <div class="rule-content">
+                        <h3>2. Hierarquia e Disciplina (O Pilar do Militarismo)</h3>
+                        <ul>
+                            <li><strong>Cadeia de Comando:</strong> A hierarquia é a espinha dorsal da PM. <strong>Nenhum subordinado deve "pular" a cadeia de comando.</strong> Problemas devem ser reportados ao seu superior imediato (Ex: Soldado reporta ao Cabo; Cabo ao Sargento).</li>
+                            <li><strong>Tratamento e Continência:</strong>
+                                <ul>
+                                    <li>Todo superior hierárquico deve ser tratado formalmente como <strong>"Senhor"</strong> ou <strong>"Senhora"</strong> (Ex: "Sim, Senhor Tenente"; "Permissão, Senhora Sargento").</li>
+                                    <li>Subordinados são tratados pela patente ou nome de guerra (Ex: "Soldado Silva"; "Cabo Andrade").</li>
+                                    <li>Gírias ("mano", "parça", "truta") são <strong>expressamente proibidas</strong> em serviço, especialmente via rádio.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Apresentação Pessoal (Farda):</strong> O policial é um representante da lei.
+                                <ul>
+                                    <li>A farda (uniforme) é sagrada. É proibido usar itens civis (bonés, máscaras não táticas, tênis coloridos) com a farda.</li>
+                                    <li>O corte de cabelo e a barba do personagem devem seguir o padrão militar (cabelo curto ou preso, barba feita ou aparada).</li>
+                                </ul>
+                            </li>
+                            <li><strong>Vedação ao "Bico":</strong> O policial, enquanto em serviço (em QAP), está dedicado exclusivamente à função policial. É proibido realizar atividades civis (como taxista, mecânico) fardado ou durante seu turno.</li>
+                        </ul>
+                    </div>
+                </section>
+                <section id="policia-radio" class="page-content hidden">
+                    <h2 class="text-3xl font-bold mb-6 text-sky-400">Policiais: Comunicação (Rádio)</h2>
+                    <div class="rule-content">
+                        <h3>3. Comunicação (Código Q e Padrão Rádio)</h3>
+                        <ul>
+                            <li><strong>Prioridade do Rádio:</strong> O rádio (COPOM) é para comunicação oficial. É proibido "poluir" o rádio com conversas aleatórios, música ou discussões paralelas.</li>
+                            <li><strong>Obrigatório o Código Q:</strong> Toda comunicação de rádio deve seguir o <strong>Código Q</strong> padrão da PM.
+                                <ul>
+                                    <li><strong>QAP:</strong> Na escuta / Entendido</li>
+                                    <li><strong>QSL:</strong> Entendido / Ciente</li>
+                                    <li><strong>QTH:</strong> Localização</li>
+                                    <li><strong>QRM:</strong> Interferência no rádio</li>
+                                    <li><strong>QSO:</strong> Contato (visual ou verbal)</li>
+                                    <li><strong>QRN:</strong> Ocorrência</li>
+                                    <li><strong>TKS:</strong> Obrigado</li>
+                                </ul>
+                            </li>
+                            <li><strong>Padrão de Verbalização:</strong> O rádio não é chat. A comunicação deve ser clara e concisa (Ex: "COPOM, Viatura ZL-045, QAP no Tatuapé, TKS." ou "Prioridade! Prioridade! Viatura ZL-010 solicitando QAP de apoio (reforço) em QTH... [local]... indivíduos em QSA de arma de fogo!").</li>
+                        </ul>
+                    </div>
+                </section>
+                <section id="policia-pop" class="page-content hidden">
+                    <h2 class="text-3xl font-bold mb-6 text-sky-400">Policiais: Procedimentos Operacionais Padrão (POP)</h2>
+                    <div class="rule-content">
+                        <h3>4. Procedimentos Operacionais Padrão (POP)</h3>
+                        <ul>
+                            <li><strong>Abordagem Padrão (Fundada Suspeita):</strong> Nenhuma abordagem é aleatória.
+                                <ul>
+                                    <li>Verbalização Clara: O primeiro comando é "Polícia Militar! Mãos na cabeça, parado!".</li>
+                                    <li>Segurança Tática: A viatura deve ser usada como cobertura (desembarque tático). Um policial (Motorista) faz a segurança (P1) enquanto o outro (Comandante) realiza a abordagem (P2).</li>
+                                    <li>Busca Pessoal: A revista (busca) só ocorre <strong>após</strong> o indivíduo estar em posição segura (mãos na cabeça ou deitado).</li>
+                                </ul>
+                            </li>
+                            <li><strong>Uso Progressivo da Força (UPF):</strong> A arma de fogo é o <strong>último</strong> recurso. A progressão é:
+                                <ol class="list-decimal pl-6">
+                                    <li>Presença Policial (a farda)</li>
+                                    <li>Verbalização (o comando)</li>
+                                    <li>Controle de Contato (uso de algemas)</li>
+                                    <li>Técnicas de Baixa Letalidade (Taser/Spark)</li>
+                                    <li>Força Letal (Arma de fogo)</li>
+                                </ol>
+                            </li>
+                            <li><strong>Regra de Engajamento (Tiro):</strong>
+                                <ul>
+                                    <li>Tiros de Advertência são PROIBIDOS. Disparar para o alto é crime e perigoso.</li>
+                                    <li>O disparo só é autorizado em <strong>legítima defesa (própria ou de terceiros)</strong>, ou seja, em resposta a uma ameaça letal iminente e real.</li>
+                                    <li>"Atirar para parar" (mirar em pneus) só é permitido se o veículo estiver sendo usado como arma (tentativa de atropelamento).</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+                <section id="policia-patrulha" class="page-content hidden">
+                    <h2 class="text-3xl font-bold mb-6 text-sky-400">Policiais: Regras de Patrulha</h2>
+                    <div class="rule-content">
+                        <h3>5. Regras de Patrulha (Imersão Zona Leste)</h3>
+                        <ul>
+                            <li><strong>Patrulhamento por Setor:</strong> A Zona Leste é imensa. O COPOM (Central) designará setores de patrulha (Ex: Setor 1 - Itaquera; Setor 2 - Tatuapé; Setor 3 - São Mateus). As viaturas <strong>não devem sair do seu setor</strong> sem autorização expressa do COPOM ou para prestar apoio urgente (QAP de apoio).</li>
+                            <li><strong>Ponto Base (PB):</strong> Viaturas não devem apenas "rodar". Devem estabelecer <strong>"Pontos Base"</strong> - locais estratégicos de alta visibilidade (Ex: Praça Silvio Romero, entrada do Shopping Itaquera) para demonstrar presença e inibir o crime.</li>
+                            <li><strong>Perseguições (Acompanhamento):</strong>
+                                <ul>
+                                    <li>Nem toda fuga deve ser perseguida. Perseguições em alta velocidade na contra-mão ou em áreas de grande movimento (Ex: Av. Radial Leste em horário de pico) devem ser <strong>evitadas ou abortadas</strong> pelo Comandante da viatura se o risco aos civis for maior que o crime cometido.</li>
+                                    <li>A prioridade é <strong>"cercar"</strong> a área (passar o QTH para outras viaturas) e não apenas seguir o veículo.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+                <section id="policia-rocam" class="page-content hidden">
+                    <h2 class="text-3xl font-bold mb-6 text-sky-400">Policiais: ROCAM</h2>
+                    <div class="rule-content">
+                        <h3>6. Diretrizes de Unidades Especializadas (ROCAM)</h3>
+                        <p class="info-box">O ingresso nessas unidades requer tempo de serviço exemplar na corporação e um processo seletivo interno (teste de aptidão tática e de tiro).</p>
+                        <h4>A. ROCAM (Rondas Ostensivas com Apoio de Motocicletas)</h4>
+                        <ul>
+                            <li><strong>Missão (Foco):</strong> A ROCAM é a unidade de saturação e agilidade. Sua missão é patrulhar "vielas", áreas de difícil acesso para viaturas de 4 rodas, e dar a primeira resposta rápida a crimes em andamento (especialmente roubos e "saidinha" de banco).</li>
+                            <li><strong>Patrulhamento:</strong> Sempre em dupla (mínimo de 2 motos). A ROCAM é "cirúrgica", focando em locais com alto índice de roubo de veículos e tráfico de menor porte.</li>
+                            <li><strong>Abordagem (Padrão 2 Motos):</strong>
+                                <ul>
+                                    <li>A abordagem deve ser rápida e dominante. As motos formam um "V" atrás do veículo suspeito ou cercam o indivídua a pé.</li>
+                                    <li>A verbalização deve ser enérgica ("Desce da moto! Mão na cabeça!").</li>
+                                    <li>Devido à exposição, a segurança é prioridade. Em caso de troca de tiros, a ROCAM deve buscar abrigo imediato e solicitar apoio da Tática ou Viatura de Área.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Restrições:</strong>
+                                <ul>
+                                    <li>A ROCAM <strong>não</strong> transporta presos. Ela faz a detenção, algema e solicita uma Viatura de Área (Ex: Blazer, Hilux) para conduzir o indivíduo ao Distrito Policial.</li>
+                                    <li>Não é permitido uso de armamentos pesados, apenas pistolas.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+                <section id="policia-tatica" class="page-content hidden">
+                    <h2 class="text-3xl font-bold mb-6 text-sky-400">Policiais: Força Tática</h2>
+                    <div class="rule-content">
+                        <h3>6. Diretrizes de Unidades Especializadas (Força Tática)</h3>
+                        <p class="info-box">O ingresso nessas unidades requer tempo de serviço exemplar na corporação e um processo seletivo interno (teste de aptidão tática e de tiro).</p>
+                        <h4>B. FORÇA TÁTICA (Patrulhamento Tático)</h4>
+                        <ul>
+                            <li><strong>Missão (Foco):</strong> A Força Tática é a tropa de resposta a ocorrências de alto risco. É a "segunda porta" que o crime encontra. Sua missão principal é o patrulhamento em locais de alto risco (favelas, áreas de tribunal do crime) e o apoio armado às viaturas de área.</li>
+                            <li><strong>Atuação:</strong> A Tática <strong>não</strong> atende ocorrências comuns (som alto, briga de trânsito, furto simples) via COPOM. Ela só é despachada para:
+                                <ul>
+                                    <li>Roubo a banco ou carro-forte.</li>
+                                    <li>Ocorrências com reféns (primeira intervenção até a chegada de unidades superiores, como o GATE).</li>
+                                    <li>Policial em apuros (QAP de apoio prioritário).</li>
+                                    <li>Confronto armado (troca de tiros) envolvendo viaturas de área.</li>
+                                    <li>Informações de tráfico de armas ou "bonde" (comboio criminoso).</li>
+                                </ul>
+                            </li>
+                            <li><strong>Padrão de Patrulha:</strong> A viatura de Tática (geralmente Hilux ou similar, com 3 ou 4 policiais) patrulha em velocidade reduzida, com "olhos na rua". A equipe deve estar pronta para o desembarque tático imediato.</li>
+                            <li><strong>Armamento:</strong> A Tática utiliza armamento de maior calibre (fuzis, carabinas). O uso desse armamento é restrito a situações de confronto assimétrico (quando os criminosos também usam armamento pesado).</li>
+                        </ul>
+                    </div>
+                </section>
+                
+                <!-- Seções de Facção/Crime -->
+                <section id="crime-acoesrua" class="page-content hidden">
+                    <h2 class="text-3xl font-bold mb-6 text-sky-400">Facção: Regras Ações de Rua</h2>
+                    <div class="rule-content">
+                        <h3>REGRAS AÇÕES DE RUA GERAL</h3>
+                        <ul>
+                            <li><strong>Definição:</strong> Ações de rua são eventos que ocorrem em locais públicos.</li>
+                            <li><strong>Abordagem:</strong> Em caso de abordagem, se o bandido aceitar a ordem de parada e estacionar o veículo, ele não poderá disparar contra os policiais. Espere o processo de RP da abordagem policial, o motivo será explicado ao fim da abordagem.</li>
+                            <li><strong>Respeito:</strong> O bandido não deve exagerar na falta de respeito com qualquer jogador.</li>
+                            <li><strong>Helicóptero:</strong> O uso de helicóptero é permitido em ações de rua. Caso o helicóptero quebre ou fumacê, ele não poderá ser consertado para voltar para a ação.</li>
+                            <li><strong>Desmaiados ou mortos:</strong> Jogadores que forem desmaiados ou mortos durante uma ação, ficarão proibidos de participar da continuação desse RP.</li>
+                        </ul>
+
+                        <h3>REGRAS DE ASSALTO A VEÍCULO E PLAYER</h3>
+                        <ul>
+                            <li>Só estará permitido somente entre às 00h e 08h00 (horário do jogo).</li>
+                            <li>Veículo pode ser levado, itens podem ser retirados.</li>
+                            <li>Permitido apenas o uso de pistola.</li>
+                            <li>Bandidos: Mínimo 2 / Máximo 4.</li>
+                        </ul>
+
+                        <h3>REGRAS DE ASSALTO A VEÍCULO E PLAYER (NORTE)</h3>
+                        <ul>
+                            <li>Só estará permitido somente entre às 13h00 e 20h00 (horário do jogo).</li>
+                            <li>Veículo pode ser levado, itens podem ser retirados.</li>
+                            <li>Permitido uso de fuzil e pistola.</li>
+                            <li>Bandidos: Mínimo 2 / Máximo 4.</li>
+                        </ul>
+
+                        <h3>REGISTRADORA E ATM</h3>
+                        <ul>
+                            <li>Ação feita para priorizar fuga.</li>
+                        </ul>
+                    </div>
+                </section>
+                
+                <section id="crime-perseguicao" class="page-content hidden">
+                    <h2 class="text-3xl font-bold mb-6 text-sky-400">Facção: Regras de Perseguição</h2>
+                    <div>
+                        <!-- Placeholder -->
+                        <div class="flex flex-col items-center justify-center p-10 border-2 border-dashed border-gray-700 rounded-lg h-64">
+                            <svg class="w-16 h-16 text-sky-400 mb-4 opacity-50" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                            </svg>
+                            <h3 class="text-2xl font-semibold text-gray-400">Regra em Elaboração</h3>
+                            <p class="text-lg text-gray-500">Este conteúdo será adicionado em breve.</p>
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="crime-acoesfechada" class="page-content hidden">
+                    <h2 class="text-3xl font-bold mb-6 text-sky-400">Facção: Ações Fechada</h2>
+                    <div class="rule-content">
+                        <h3>REGRAS DE AÇÕES</h3>
+                        <ul>
+                            <li><strong>Loot:</strong> Apenas os jogadores envolvidos na ação podem lootear itens. Os policiais não podem ser looteados, exceto se forem abatidos dentro de áreas vermelhas. O loot pode acontecer apenas ao final da ação e em ações de rua e zonas vermelhas a partir do momento da morte.</li>
+                            <li><strong>Capacetes:</strong> Não é permitido usar capacetes em ações, exceto para fuga com uma moto.</li>
+                            <li><strong>Animação:</strong> Não é permitido usar nenhum comando de animação durante uma ação, se já estiver em uma animação ao iniciar a ação você deve cancelar imediatamente a animação.</li>
+                            <li><strong>Perímetro:</strong> O perímetro da ação pode ser explorado por ambas as partes. A ação não acontece apenas dentro do local. Opcionalmente este perímetro pode ser negociado com a polícia. Todo perímetro só pode ser realizado após a negociação. O águia ou pelicano só podem chegar ao local após ela ser feita.</li>
+                            <li><strong>Reféns:</strong> Um aviso prévio por parte dos bandidos é necessário para todas as ações com reféns. Faça um chamado para a polícia utilizando os serviços do seu telefone. Reféns não podem ter nenhum tipo de ligação com o grupo da ação.
+                                <ul class="my-2">
+                                    <li class="warning-box !mb-0">O valor <strong>máximo</strong> para negociação de qualquer refém é de <strong>R$ 100.000 (Cem Mil)</strong>.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Início:</strong> Antes de iniciar a ação deve-se combinar quando se dará início a ação, pode ser uma rajada, ou o uso de balão.</li>
+                            <li><strong>Negociação:</strong> Obrigatório negociar perímetro, se terão participantes fora e dentro, participação de aeronaves, tipo de armamento.</li>
+                            <li><strong>Reconhecimento:</strong> Jogadores que não usam máscara durante uma ação podem ser reconhecidos mesmo trocando de roupa.</li>
+                            <li><strong>Saída da área:</strong> Jogadores que saiam da área de combate da ação não podem retornar, independente do motivo.</li>
+                            <li><strong>Combat logging:</strong> Caso um jogador crash e, ou seja, a desconectado no meio da ação, ele está proibido de voltar para ela, independente do motivo. Ainda terá que enviar print do crash e/ou erro de conexão com data e horário aparentes na tela, caso contrário será considerado combatlog. (Em caso de eventos fica a critério do Administrador responsável)</li>
+                            <li><strong>Bloqueio da entrada:</strong> É proibido bloquear a entrada do estabelecimento (portas) em ações, seja por parte dos bandidos ou da polícia.</li>
+                            <li><strong>Finalização da ação:</strong> Após o fim da ação, é necessário aguardar 3 minutos antes do loot ou reviver.</li>
+                            <li><strong>GG:</strong> Policiais podem dar GG em ações pequenas caso não tenha ninguém por perto.</li>
+                            <li><strong>Samu:</strong> O samu deve ser sempre chamado para verificar se o indivíduo está morto assim que acabar a ação. O “desmaiado” deve aguardar até que seja reanimado ou escute a “voz do além” enviando você para a luz.</li>
+                        </ul>
+                    </div>
+                </section>
+                
+                <section id="crime-sequestro" class="page-content hidden">
+                    <h2 class="text-3xl font-bold mb-6 text-sky-400">Facção: Sequestro</h2>
+                    <div>
+                        <!-- Placeholder -->
+                        <div class="flex flex-col items-center justify-center p-10 border-2 border-dashed border-gray-700 rounded-lg h-64">
+                            <svg class="w-16 h-16 text-sky-400 mb-4 opacity-50" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                            </svg>
+                            <h3 class="text-2xl font-semibold text-gray-400">Regra em Elaboração</h3>
+                            <p class="text-lg text-gray-500">Este conteúdo será adicionado em breve.</p>
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="crime-resgate" class="page-content hidden">
+                    <h2 class="text-3xl font-bold mb-6 text-sky-400">Facção: Resgate de Prisioneiros</h2>
+                    <div>
+                        <!-- Placeholder -->
+                        <div class="flex flex-col items-center justify-center p-10 border-2 border-dashed border-gray-700 rounded-lg h-64">
+                            <svg class="w-16 h-16 text-sky-400 mb-4 opacity-50" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                            </svg>
+                            <h3 class="text-2xl font-semibold text-gray-400">Regra em Elaboração</h3>
+                            <p class="text-lg text-gray-500">Este conteúdo será adicionado em breve.</p>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('.nav-link[data-page]');
+            const pages = document.querySelectorAll('.page-content');
+            const accordionToggles = document.querySelectorAll('.accordion-toggle');
+            const profileFilter = document.getElementById('profile-filter');
+            const allNavItems = document.querySelectorAll('[data-profile]');
+            const contentArea = document.getElementById('content-area');
+            const scrollTopButton = document.getElementById('scrollTopButton');
+            const punishmentSelector = document.getElementById('punishment-selector'); // CORREÇÃO AQUI
+            const punishmentDetailsDiv = document.getElementById('punishmentDetails');
+            const punishmentInfos = document.querySelectorAll('.punishment-info');
+
+            let activePage = 'inicio';
+            let activeLink = document.querySelector('.nav-link[data-page="inicio"]');
+            
+            // Verifica se activeLink não é nulo antes de adicionar a classe
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+
+            // --- Função de Filtro de Perfil ---
+            function filterMenu() {
+                const selectedProfile = profileFilter.value;
+
+                allNavItems.forEach(item => {
+                    const itemProfiles = item.dataset.profile.split(' ');
+                    
+                    if (selectedProfile === 'todos' || itemProfiles.includes(selectedProfile)) {
+                        item.classList.remove('hidden');
+                    } else {
+                        item.classList.add('hidden');
+                    }
+                });
+
+                // Garante que o cabeçalho do tópico também seja filtrado
+                document.querySelectorAll('h3[data-profile]').forEach(header => {
+                    const headerProfiles = header.dataset.profile.split(' ');
+                    if (selectedProfile === 'todos' || headerProfiles.includes(selectedProfile)) {
+                        header.classList.remove('hidden');
+                    } else {
+                        header.classList.add('hidden');
+                    }
+                });
+            }
+
+            // --- Função de Navegação ---
+            function showPage(pageId) {
+                // Oculta todas as páginas
+                pages.forEach(page => page.classList.add('hidden'));
+
+                // Mostra a página clicada
+                const pageToShow = document.getElementById(pageId);
+                if (pageToShow) {
+                    pageToShow.classList.remove('hidden');
+                    activePage = pageId;
+                }
+
+                // Atualiza o link ativo
+                if (activeLink) {
+                    activeLink.classList.remove('active');
+                }
+                const newActiveLink = document.querySelector(`.nav-link[data-page="${pageId}"]`);
+                if (newActiveLink) {
+                    activeLink = newActiveLink;
+                    activeLink.classList.add('active');
+                }
+                
+                // Rola o conteúdo principal para o topo
+                if (contentArea) {
+                    contentArea.scrollTo(0, 0);
+                }
+            }
+
+            // --- Função de Menu Acordeão ---
+            function accordionClick(e) {
+                const toggle = e.currentTarget;
+                const content = toggle.nextElementSibling;
+                const arrow = toggle.querySelector('.accordion-arrow');
+
+                if (content) {
+                    content.classList.toggle('hidden');
+                }
+                if (arrow) {
+                    arrow.classList.toggle('rotate-180');
+                }
+            }
+
+            // --- Função de Voltar ao Topo ---
+            function scrollToTop() {
+                if (contentArea) {
+                    contentArea.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+
+            // --- Adiciona Event Listeners ---
+
+            // Navegação
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    const pageId = link.dataset.page;
+                    showPage(pageId);
+                });
+            });
+
+            // Acordeão
+            accordionToggles.forEach(toggle => {
+                toggle.addEventListener('click', accordionClick);
+            });
+
+            // Filtro de Perfil
+            if (profileFilter) {
+                profileFilter.addEventListener('change', filterMenu);
+            }
+
+            // Botão Voltar ao Topo (Visibilidade)
+            if (contentArea) {
+                contentArea.addEventListener('scroll', () => {
+                    if (contentArea.scrollTop > 200) {
+                        if (scrollTopButton) scrollTopButton.classList.remove('hidden');
+                    } else {
+                        if (scrollTopButton) scrollTopButton.classList.add('hidden');
+                    }
+                });
+            }
+
+            // Botão Voltar ao Topo (Clique)
+            if (scrollTopButton) {
+                scrollTopButton.addEventListener('click', scrollToTop);
+            }
+
+            // Guia Rápido de Punições
+            if (punishmentSelector) {
+                punishmentSelector.addEventListener('change', () => {
+                    const selectedValue = punishmentSelector.value;
+                    
+                    // Esconde todos
+                    punishmentInfos.forEach(info => info.classList.add('hidden'));
+                    
+                    if (selectedValue !== 'select') {
+                        const detailToShow = document.getElementById(`${selectedValue}-desc`);
+                        if (detailToShow) {
+                            if (punishmentDetailsDiv) punishmentDetailsDiv.classList.remove('hidden');
+                            detailToShow.classList.remove('hidden');
+                        }
+                    } else {
+                        if (punishmentDetailsDiv) punishmentDetailsDiv.classList.add('hidden');
+                    }
+                });
+            }
+
+            // Inicializa o filtro e a página
+            if (profileFilter) {
+                filterMenu();
+            }
+            showPage(activePage);
+        });
+    </script>
+
+    <!-- Estilos específicos para links de navegação (Tailwind não pode aplicar isso dinamicamente) -->
+    <style>
+        .nav-link {
+            display: flex;
+            align-items: center;
+            padding: 0.6rem 0.75rem;
+            border-radius: 0.5rem;
+            color: #CBD5E1; /* cinza-claro */
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            margin-left: 0.5rem;
+            border-left: 3px solid transparent;
+        }
+
+        .nav-link:hover {
+            background-color: #1E293B; /* azul-ardósia-800 */
+            color: #F8FAFC; /* branco */
+        }
+
+        /* Link ativo */
+        .nav-link.active {
+            background-color: #1E293B;
+            color: #38BDF8; /* azul-claro */
+            font-weight: 600;
+            border-left: 3px solid #38BDF8;
+        }
+        
+        /* Cabeçalho do Acordeão */
+        .accordion-toggle {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            cursor: pointer;
+            padding-right: 0.5rem;
+        }
+        .accordion-toggle .nav-link-header {
+             display: flex;
+            align-items: center;
+            padding: 0.6rem 0.75rem;
+            color: #CBD5E1;
+            font-weight: 500;
+        }
+        .accordion-toggle:hover .nav-link-header {
+            color: #F8FAFC;
+        }
+        .accordion-toggle .nav-link-header svg {
+            margin-right: 0.75rem; /* 12px */
+        }
+        .accordion-toggle .accordion-arrow {
+            transition: transform 0.2s ease-in-out;
+            color: #64748B; /* cinza-500 */
+        }
+        .accordion-toggle:hover .accordion-arrow {
+            color: #CBD5E1;
+        }
+        .accordion-toggle .rotate-180 {
+            transform: rotate(180deg);
+        }
+
+        /* Conteúdo do Acordeão */
+        .accordion-content {
+            padding-left: 1.25rem; /* 20px */
+            border-left: 1px dashed #334155; /* cinza-700 */
+            margin-left: 1.25rem;
+        }
+        .accordion-content .nav-link {
+            padding: 0.5rem 0.75rem;
+            margin-left: 0;
+            font-size: 0.9rem;
+        }
+        .accordion-content .nav-link.active {
+            border-left-width: 3px;
+        }
+
+    </style>
+
+</body>
+</html>
+
+
