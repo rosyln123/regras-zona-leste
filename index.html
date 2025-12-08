@@ -1,0 +1,1309 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regras Zona Leste RP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #d4d4d8;
+            background-image: linear-gradient(to bottom right, #e4e4e7, #a1a1aa);
+            color: #3f3f46;
+            overflow: hidden;
+        }
+
+        /* Scrollbar Personalizada */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d4d4d8;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a1a1aa;
+        }
+
+        /* Painéis de Vidro */
+        .glass-panel {
+            background: rgba(244, 244, 245, 0.65);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        /* Navegação */
+        .nav-item {
+            transition: all 0.2s ease;
+            position: relative;
+        }
+        .nav-item:hover, .nav-item.active {
+            background-color: rgba(0, 0, 0, 0.05);
+            color: #18181b;
+        }
+        
+        .nav-item.active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 60%;
+            width: 3px;
+            background-color: #18181b;
+            border-radius: 0 4px 4px 0;
+        }
+
+        /* Dock Buttons */
+        .dock-btn {
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .dock-btn::after {
+            content: '';
+            position: absolute;
+            left: -12px;
+            top: 50%;
+            transform: translateY(-50%) scaleY(0);
+            width: 4px;
+            height: 20px;
+            background-color: #38bdf8;
+            border-radius: 0 4px 4px 0;
+            transition: transform 0.3s ease;
+        }
+        .dock-btn:hover {
+            color: white;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 12px;
+        }
+        .dock-btn.active {
+            color: #38bdf8;
+        }
+        .dock-btn.active::after {
+            transform: translateY(-50%) scaleY(1);
+        }
+
+        /* Tipografia */
+        .rule-content h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #27272a;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+            border-bottom: 1px solid #e4e4e7;
+            padding-bottom: 0.5rem;
+        }
+        .rule-content h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #52525b;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .rule-content p, .rule-content li {
+            color: #52525b;
+            line-height: 1.7;
+            margin-bottom: 0.8rem;
+        }
+        .rule-content ul {
+            list-style-type: disc;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .rule-content ol {
+            list-style-type: decimal;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .rule-content strong {
+            color: #18181b;
+            font-weight: 600;
+        }
+
+        /* Caixas de Aviso */
+        .info-box, .warning-box, .success-box {
+            padding: 1.25rem;
+            border-radius: 1rem;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+        }
+        .info-box {
+            background-color: #e0f2fe;
+            color: #0c4a6e;
+            border-left: 4px solid #0ea5e9;
+        }
+        .warning-box {
+            background-color: #fee2e2;
+            color: #7f1d1d;
+            border-left: 4px solid #ef4444;
+        }
+        .success-box {
+            background-color: #dcfce7;
+            color: #14532d;
+            border-left: 4px solid #22c55e;
+        }
+
+        /* Header Documentos PM */
+        .pm-doc-header {
+            text-align: center;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .pm-doc-header h2 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #1e293b;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .pm-doc-header p {
+            font-size: 0.875rem;
+            color: #64748b;
+            text-transform: uppercase;
+            margin-bottom: 0.25rem;
+        }
+
+        /* Acordeão */
+        .accordion-content {
+            transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+            overflow: hidden;
+        }
+        .accordion-content.hidden {
+            max-height: 0;
+            opacity: 0;
+        }
+        .accordion-content:not(.hidden) {
+            max-height: 1000px;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center h-screen w-full p-4 lg:p-6 gap-6 selection:bg-zinc-300">
+
+    <!-- Mobile Toggle -->
+    <button id="mobile-toggle" class="md:hidden absolute top-4 left-4 z-50 bg-zinc-900 text-white p-2 rounded-lg shadow-lg">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+    </button>
+
+    <!-- COLUNA 1: DOCK -->
+    <div id="dock-container" class="hidden md:flex flex-col justify-between h-full py-2 transition-transform duration-300">
+        <div class="bg-zinc-900 text-zinc-400 rounded-full py-6 w-16 flex flex-col items-center gap-6 shadow-2xl z-50">
+            <div class="text-white p-2 bg-zinc-700 rounded-2xl mb-2 cursor-default">
+                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
+                </svg>
+            </div>
+            <button class="dock-btn p-3 active" id="btn-home" onclick="handleDockClick('inicio')" title="Início">
+                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" /></svg>
+            </button>
+            <button class="dock-btn p-3" id="btn-rules" onclick="handleDockClick('regras-basicas')" title="Regras Básicas">
+                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>
+            </button>
+            <button class="dock-btn p-3" id="btn-pm" onclick="handleDockClick('pm-regulamento')" title="Regulamento Interno PM">
+                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+                </svg>
+            </button>
+        </div>
+        <div class="bg-zinc-900/90 backdrop-blur text-zinc-400 rounded-full py-4 w-16 flex flex-col items-center gap-4 mt-4 shadow-lg">
+            <button class="dock-btn p-3" onclick="alert('Configurações em desenvolvimento')" title="Configurações">
+                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.34 15.84c-.688-.06-1.386-.09-2.09-.09H7.5a4.5 4.5 0 110-9h.75c.704 0 1.402-.03 2.09-.09m0 9.18c.253.962.584 1.892.985 2.783.247.55.06 1.1-.359 1.453l-1.144 1.144a4.5 4.5 0 006.538-6.537l-1.144-1.144c-.354-.417-.902-.606-1.452-.359a6.25 6.25 0 00-2.784.985m0-9.18a6.25 6.25 0 012.784.985c.55.247 1.098.058 1.452-.359l1.144-1.144a4.5 4.5 0 00-6.538-6.537l-1.144 1.144c-.417.354-.606.902-.359 1.452a6.25 6.25 0 01.985 2.784m0 0a6.25 6.25 0 01-4.09 4.09" /></svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- COLUNA 2: MENU DE NAVEGAÇÃO -->
+    <div id="nav-container" class="glass-panel w-80 h-full rounded-[2.5rem] hidden md:flex flex-col p-6 shadow-2xl animate-fade-in-left transition-transform duration-300">
+        <div class="flex items-center gap-3 mb-8">
+            <div class="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center text-white font-bold text-sm shadow-md">ZL</div>
+            <div>
+                <h2 class="text-sm font-bold text-zinc-800">Zona Leste RP</h2>
+                <p class="text-xs text-zinc-500">Regulamento Oficial</p>
+            </div>
+            <button id="close-nav" class="md:hidden ml-auto text-zinc-500">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+
+        <div class="mb-6">
+            <label class="text-xs font-semibold text-zinc-400 uppercase tracking-wider ml-2">Perfil</label>
+            <div class="mt-2 relative">
+                <select id="profile-filter" class="w-full bg-white/50 backdrop-blur border border-white/60 text-zinc-700 text-sm rounded-xl p-3 outline-none focus:ring-2 focus:ring-zinc-400 appearance-none shadow-sm transition-shadow cursor-pointer hover:bg-white/80">
+                    <option value="todos">Mostrar Tudo</option>
+                    <option value="cidadao">Cidadão</option>
+                    <option value="policial">Policial Militar</option>
+                    <option value="faccao">Facção / Crime</option>
+                    <option value="legal">Legal / SAMU</option>
+                </select>
+                <div class="absolute right-3 top-3 pointer-events-none text-zinc-500">
+                    <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
+                </div>
+            </div>
+        </div>
+
+        <nav class="flex-1 overflow-y-auto space-y-1 pr-2 custom-scrollbar">
+            <!-- Geral -->
+            <div class="mb-4" data-profile="todos cidadao policial faccao legal">
+                <h3 class="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-2 ml-2">Geral</h3>
+                <div class="nav-item rounded-lg cursor-pointer p-3 flex items-center gap-3 text-zinc-600 text-sm active" data-page="inicio" data-profile="todos cidadao policial faccao legal">
+                    <svg class="w-4 h-4 opacity-70" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11.47 3.84a.75.75 0 011.06 0l8.69 8.69a.75.75 0 101.06-1.06l-8.689-8.69a2.25 2.25 0 00-3.182 0l-8.69 8.69a.75.75 0 001.061 1.06l8.69-8.69z" /><path d="M12 5.432l8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 01-.75-.75v-4.5a.75.75 0 00-.75-.75h-3a.75.75 0 00-.75.75V21a.75.75 0 01-.75.75H5.625a1.875 1.875 0 01-1.875-1.875v-6.198a2.29 2.29 0 00.091-.086L12 5.43z" /></svg>
+                    Início
+                </div>
+                <div class="nav-item rounded-lg cursor-pointer p-3 flex items-center gap-3 text-zinc-600 text-sm" data-page="regras-basicas" data-profile="todos cidadao policial faccao legal">
+                    <svg class="w-4 h-4 opacity-70" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm11.378-3.917c-.89-.777-2.366-.777-3.255 0a.75.75 0 01-.988-1.129c1.454-1.272 3.776-1.272 5.23 0 1.513 1.324 1.513 3.518 0 4.842a3.75 3.75 0 01-.837.552c-.676.328-1.028.774-1.028 1.152v.75a.75.75 0 01-1.5 0v-.75c0-1.279 1.06-2.107 1.875-2.502.182-.088.351-.199.503-.331.83-.727.83-1.857 0-2.584zM12 18a.75.75 0 100-1.5.75.75 0 000 1.5z" clip-rule="evenodd" /></svg>
+                    Regras Básicas
+                </div>
+                <div class="nav-item rounded-lg cursor-pointer p-3 flex items-center gap-3 text-zinc-600 text-sm" data-page="zona-safe" data-profile="todos cidadao policial faccao legal">
+                    <svg class="w-4 h-4 opacity-70" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M12.516 2.17a.75.75 0 00-1.032 0 11.209 11.209 0 01-7.877 3.08.75.75 0 00-.722.515A12.74 12.74 0 002.25 9.75c0 5.942 4.064 10.933 9.563 12.348a.749.749 0 00.374 0c5.499-1.415 9.563-6.406 9.563-12.348 0-1.39-.223-2.73-.635-3.985a.75.75 0 00-.722-.516l-.143.001c-2.996 0-5.717-1.17-7.734-3.08zm3.094 8.016a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clip-rule="evenodd" /></svg>
+                    Zona Safe
+                </div>
+                <div class="nav-item rounded-lg cursor-pointer p-3 flex items-center gap-3 text-zinc-600 text-sm" data-page="sistema-punicao" data-profile="todos cidadao policial faccao">
+                    <svg class="w-4 h-4 opacity-70" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M12 2.25a.75.75 0 01.75.75v.756a49.106 49.106 0 019.152 1 .75.75 0 01-.152 1.485h-1.918l2.478 3.258a.75.75 0 01-1.2.912l-2.495-3.296-.392.391a3.536 3.536 0 01-3.536 3.536h-1.24a3.536 3.536 0 01-3.536-3.536l-.392-.391-2.495 3.296a.75.75 0 01-1.2-.912l2.478-3.258H2.25a.75.75 0 01-.152-1.485 49.107 49.107 0 019.152-1V3a.75.75 0 01.75-.75zm4.878 13.5a.75.75 0 00-1.06-1.06l-1.068 1.068-1.068-1.068a.75.75 0 10-1.06 1.06l1.068 1.068-1.068 1.068a.75.75 0 001.06 1.06l1.068-1.068 1.068 1.068a.75.75 0 001.06-1.06l-1.068-1.068 1.068-1.068z" clip-rule="evenodd" /><path fill-rule="evenodd" d="M12 7.5a6 6 0 00-6 6v1.5a6 6 0 006 6v-1.5a4.5 4.5 0 01-4.5-4.5v-1.5a4.5 4.5 0 014.5-4.5V7.5zM12 7.5a6 6 0 016 6v1.5a6 6 0 01-6 6v-1.5a4.5 4.5 0 004.5-4.5v-1.5a4.5 4.5 0 00-4.5-4.5V7.5z" clip-rule="evenodd" /></svg>
+                    Punições
+                </div>
+                <div class="nav-item rounded-lg cursor-pointer p-3 flex items-center gap-3 text-zinc-600 text-sm" data-page="regras-personagem" data-profile="todos cidadao policial faccao legal">
+                    <svg class="w-4 h-4 opacity-70" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clip-rule="evenodd" /></svg>
+                    Personagem
+                </div>
+                <div class="nav-item rounded-lg cursor-pointer p-3 flex items-center gap-3 text-zinc-600 text-sm" data-page="seguranca-servidor" data-profile="todos cidadao policial faccao legal">
+                    <svg class="w-4 h-4 opacity-70" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M12 1.5a5.25 5.25 0 00-5.25 5.25v3a3 3 0 00-3 3v6.75a3 3 0 003 3h10.5a3 3 0 003-3v-6.75a3 3 0 00-3-3v-3c0-2.9-2.35-5.25-5.25-5.25zm3.75 8.25v-3a3.75 3.75 0 10-7.5 0v3h7.5z" clip-rule="evenodd" /></svg>
+                    Segurança
+                </div>
+            </div>
+
+            <!-- Legal -->
+            <div class="mb-4" data-profile="todos policial legal">
+                <h3 class="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-2 ml-2">Legal</h3>
+                <div class="nav-item rounded-lg cursor-pointer p-3 flex items-center gap-3 text-zinc-600 text-sm" data-page="empregos-legais" data-profile="todos legal">
+                    <div class="w-4 h-4 rounded bg-emerald-100 flex items-center justify-center text-emerald-600 text-[10px] font-bold">L</div>
+                    Regras Empregos
+                </div>
+                <div class="nav-item rounded-lg cursor-pointer p-3 flex items-center gap-3 text-zinc-600 text-sm" data-page="hospital" data-profile="todos legal">
+                    <div class="w-4 h-4 rounded bg-rose-100 flex items-center justify-center text-rose-600 text-[10px] font-bold">+</div>
+                    Hospital (SAMU)
+                </div>
+                <div class="nav-item rounded-lg cursor-pointer p-3 flex items-center gap-3 text-zinc-600 text-sm" data-page="mecanico" data-profile="todos legal">
+                    <div class="w-4 h-4 rounded bg-amber-100 flex items-center justify-center text-amber-600 text-[10px] font-bold">M</div>
+                    Mecânico
+                </div>
+                <div class="accordion-toggle cursor-pointer" data-profile="todos policial">
+                    <div class="nav-item rounded-lg p-3 flex items-center justify-between text-zinc-600 text-sm">
+                        <div class="flex items-center gap-3">
+                            <div class="w-4 h-4 rounded bg-blue-100 flex items-center justify-center text-blue-600 text-[10px] font-bold">P</div>
+                            <span>Policiais</span>
+                        </div>
+                        <svg class="w-3 h-3 text-zinc-400 accordion-arrow transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                </div>
+                <div class="accordion-content hidden pl-9 space-y-1" data-profile="todos policial">
+                    <div class="py-2 text-xs text-zinc-500 hover:text-zinc-800 cursor-pointer transition-colors" data-page="policia-alistamento">Carreira</div>
+                    <div class="py-2 text-xs text-zinc-500 hover:text-zinc-800 cursor-pointer transition-colors" data-page="policia-hierarquia">Hierarquia</div>
+                    <div class="py-2 text-xs text-zinc-500 hover:text-zinc-800 cursor-pointer transition-colors" data-page="policia-estrutura">Estrutura</div>
+                    <div class="py-2 text-xs text-zinc-500 hover:text-zinc-800 cursor-pointer transition-colors" data-page="policia-radio">Comunicação</div>
+                    <div class="py-2 text-xs text-zinc-500 hover:text-zinc-800 cursor-pointer transition-colors" data-page="policia-pop">P.O.P</div>
+                    <div class="py-2 text-xs text-zinc-500 hover:text-zinc-800 cursor-pointer transition-colors" data-page="policia-patrulha">Patrulha</div>
+                    <div class="py-2 text-xs text-zinc-500 hover:text-zinc-800 cursor-pointer transition-colors" data-page="policia-rocam">ROCAM</div>
+                    <div class="py-2 text-xs text-zinc-500 hover:text-zinc-800 cursor-pointer transition-colors" data-page="policia-tatica">Força Tática</div>
+                    <div class="py-2 text-xs text-zinc-500 hover:text-zinc-800 cursor-pointer transition-colors" data-page="policia-corregedoria">Corregedoria</div>
+                    <div class="py-2 text-xs text-zinc-500 hover:text-zinc-800 cursor-pointer transition-colors" data-page="policia-identificacao">Identificação</div>
+                </div>
+            </div>
+
+            <!-- Ilegal -->
+            <div class="mb-4" data-profile="todos faccao">
+                <h3 class="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-2 ml-2">Ilegal</h3>
+                <div class="accordion-toggle cursor-pointer" data-profile="todos faccao">
+                    <div class="nav-item rounded-lg p-3 flex items-center justify-between text-zinc-600 text-sm">
+                        <div class="flex items-center gap-3">
+                            <div class="w-4 h-4 rounded bg-purple-100 flex items-center justify-center text-purple-600 text-[10px] font-bold">F</div>
+                            <span>Facções</span>
+                        </div>
+                        <svg class="w-3 h-3 text-zinc-400 accordion-arrow transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                </div>
+                <div class="accordion-content hidden pl-9 space-y-1" data-profile="todos faccao">
+                    <div class="py-2 text-xs text-zinc-500 hover:text-zinc-800 cursor-pointer transition-colors" data-page="crime-acoesrua">Ações de Rua</div>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- COLUNA 3: CONTEÚDO -->
+    <main id="content-area" class="flex-1 h-full glass-panel rounded-[2.5rem] relative overflow-hidden flex flex-col p-2 lg:p-0 shadow-2xl">
+        <header class="px-8 py-6 flex justify-between items-center border-b border-zinc-200/50 bg-white/20 backdrop-blur-md sticky top-0 z-10">
+            <div>
+                <h1 class="text-2xl font-bold text-zinc-800 tracking-tight" id="page-title">Regulamento Geral</h1>
+                <p class="text-sm text-zinc-500 mt-1">Última atualização: Hoje</p>
+            </div>
+            <div class="flex items-center gap-2 bg-white/60 backdrop-blur rounded-full px-4 py-2 shadow-sm border border-white">
+                <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                <span class="text-xs font-semibold text-zinc-600">Servidor Online</span>
+            </div>
+        </header>
+
+        <div class="flex-1 overflow-y-auto p-8 custom-scrollbar relative">
+            <button id="scrollTopButton" class="hidden absolute bottom-8 right-8 bg-zinc-800 text-white p-3 rounded-full shadow-lg hover:bg-zinc-700 transition-all duration-300 z-50">
+                <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+                </svg>
+            </button>
+
+            <!-- Página: Início -->
+            <section id="inicio" class="page-content max-w-4xl mx-auto">
+                <div class="glass-card p-8 mb-6">
+                    <img src="https://iili.io/Kss4Pj9.jpg" alt="Banner Zona Leste RP" class="w-full h-auto rounded-xl mb-8 shadow-sm">
+                    <div class="rule-content">
+                        <h3 class="!mt-0">Bem-vindo à Zona Leste!</h3>
+                        <p>A equipe de administração da <strong>Zona Leste Roleplay</strong> está imensamente feliz em receber você em nossa cidade. Nosso objetivo é criar um ambiente de Roleplay (RP) sério, divertido e imersivo para todos os jogadores, veteranos ou novatos.</p>
+                        <p>Para garantir que a experiência de todos seja positiva, criamos este regulamento. Ele é a base de conduta da nossa cidade. A leitura, compreensão e aceitação destas regras são <strong>obrigatórias</strong> para todos os cidadãos.</p>
+                        
+                        <div class="info-box">
+                            <p class="!mb-0 font-medium">O ingresso na cidade (aprovação na Whitelist) significa que você <strong>leu, compreendeu e aceitou</strong> todos os termos aqui descritos. O desconhecimento das regras não isenta ninguém das punições.</p>
+                        </div>
+
+                        <h3>CAPÍTULO I – DA ADESÃO E ACEITAÇÃO</h3>
+                        <p><strong>Artigo 1º</strong> – A participação no Servidor Zona Leste RP é voluntária, mas condicionada ao cumprimento integral dos presentes Termos.</p>
+                        <p><strong>Artigo 2º</strong> – A realização e aprovação da Whitelist equivalem à assinatura digital deste documento, com aceitação automática e irretratável de todas as cláusulas aqui descritas.</p>
+                        <p><strong>Artigo 3º</strong> – A alegação de desconhecimento das normas não isenta o cidadão de suas obrigações.</p>
+
+                        <h3>CAPÍTULO VII – DAS ATUALIZAÇÕES</h3>
+                        <p><strong>Artigo 16º</strong> – A Direção da Cidade Zona Leste RP reserva-se ao direito de alterar, modificar ou complementar os presentes Termos a qualquer tempo, sem necessidade de aviso individual.</p>
+                        <p><strong>Artigo 17º</strong> – É dever do cidadão acompanhar os comunicados oficiais e manter-se atualizado acerca das normas em vigor.</p>
+
+                        <h3>CAPÍTULO VIII – DAS DISPOSIÇÕES FINAIS</h3>
+                        <p><strong>Artigo 18º</strong> – A permanência na Cidade constitui privilégio concedido pela Administração, e não um direito adquirido.</p>
+                        <p><strong>Artigo 19º</strong> – O não cumprimento dos presentes Termos acarretará sanções imediatas, de acordo com a gravidade da infração cometida.</p>
+                        <p><strong>Artigo 20º</strong> – Ao realizar sua Whitelist, o cidadão declara formalmente estar ciente e em total concordância com este Regulamento, assumindo todos os compromissos e obrigações aqui descritos.</p>
+
+                        <div class="success-box mt-8">
+                            <p class="!mb-0">📜 Assim sendo, o ingresso e permanência na Cidade Zona Leste representam aceitação plena e irretratável de todos os dispositivos aqui contidos, constituindo compromisso solene entre o cidadão e a Direção do Servidor.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Página: Regras Básicas -->
+            <section id="regras-basicas" class="page-content hidden max-w-4xl mx-auto">
+                <div class="glass-card p-8">
+                    <div class="rule-content">
+                        <h3 class="!mt-0">CAPÍTULO II – DAS REGRAS DE CONDUTA</h3>
+                        <p><strong>Artigo 4º</strong> – O cidadão compromete-se a manter conduta respeitosa, ética e em conformidade com os princípios do roleplay, sendo vedadas:</p>
+                        <ul>
+                            <li>A utilização de trapaças, exploits, programas ilícitos ou modificações não autorizadas;</li>
+                            <li>A prática de assédio, discriminação, injúria ou qualquer forma de violência verbal ou psicológica;</li>
+                            <li>O uso indevido de bugs ou falhas técnicas para obtenção de vantagens;</li>
+                            <li>Qualquer atitude que comprometa a harmonia, estabilidade ou reputação do Servidor.</li>
+                        </ul>
+                        <p><strong>Artigo 5º</strong> – A reincidência em condutas nocivas será tratada com máxima severidade, podendo culminar em banimento permanente.</p>
+
+                        <div class="warning-box my-6">
+                            <h4 class="!mt-0 text-red-800">⚠️ Troca de Tiros com a Polícia</h4>
+                            <p class="text-red-900">Informamos que qualquer ação de troca de tiros com a polícia <strong>sem motivo válido</strong> dentro do RP será considerada conduta indevida.</p>
+                            <p class="text-red-900 font-bold !mb-0">Punição: Banimento de 1 dia.</p>
+                            <p class="text-xs text-red-700 mt-2">Pedimos a colaboração de todos para manter a jogabilidade justa, equilibrada e respeitosa.</p>
+                        </div>
+
+                        <h4>PROIBIÇÃO DE FORÇAR RP</h4>
+                        <p>Forçar RP é qualquer ação que obrigue o outro jogador a participar de uma situação sem que ele tenha chance de reação ou escolha, quebrando a imersão.</p>
+                        
+                        <div class="grid md:grid-cols-2 gap-4 mt-4">
+                            <div class="bg-zinc-50 p-4 rounded-xl border border-zinc-200">
+                                <h5 class="font-bold text-zinc-700 mb-2">Polícia</h5>
+                                <p class="text-sm">Não pode abordar sem a fundada suspeita. Em outras palavras, em patrulhamento de rotina sem infrações ou crimes, não é genuíno realizar abordagens por "tirocínio", configurando Abuso de Autoridade.</p>
+                            </div>
+                            <div class="bg-zinc-50 p-4 rounded-xl border border-zinc-200">
+                                <h5 class="font-bold text-zinc-700 mb-2">Bandido</h5>
+                                <p class="text-sm">O cidadão que usar de meios, veículos ou circunstâncias vantajosas para debochar, desafiar ou transtornar uma unidade policial (empinar moto, fazer drift, dar dedo do meio) não será só penalizado, mas também dará o direito da Polícia tomar medidas não letais para inibir a situação.</p>
+                            </div>
+                        </div>
+
+                        <h4 class="mt-6">Reporte de Crash (Desconexão)</h4>
+                        <div class="warning-box">
+                            <p>Caso seu jogo feche (crash/desconexão), é <strong>obrigatório reportar o ocorrido imediatamente</strong> à staff.</p>
+                            <p class="!mb-0">O print para comprovar o crash deve ser de <strong>tela cheia</strong>, mostrando claramente a <strong>data e a hora</strong> do seu computador. Prints cortados ou sem data/hora não serão aceitos.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Página: Zona Safe -->
+            <section id="zona-safe" class="page-content hidden max-w-4xl mx-auto">
+                <div class="glass-card p-8">
+                    <div class="rule-content">
+                        <h3 class="!mt-0">O que é uma Zona Segura?</h3>
+                        <p>Zonas Seguras (ou "Safe Zones") são locais designados onde **qualquer tipo de ação hostil é estritamente proibida**. O objetivo é garantir que os jogadores possam realizar atividades essenciais sem medo de serem atacados.</p>
+                        <div class="info-box">
+                            <p class="!mb-0">As Zonas Seguras oficiais da cidade são: <strong>Hospital, Praça e Garagem</strong> (Interiores e arredores imediatos).</p>
+                        </div>
+                        <p>Ações proibidas incluem: roubo, sequestro, agressão, assassinato, e qualquer forma de provocação que vise iniciar um conflito.</p>
+                        
+                        <h4>Voz de Assalto e Fuga para Área Safe</h4>
+                        <p>Caso seja dada voz de assalto a um player e este fuja para uma Área Segura (Hospital, Praça ou Garagem), essa ação será considerada <strong>anti Amor à Vida (Anti-RP)</strong>.</p>
+                        <p>O suspeito poderá ser abatido (mesmo dentro da área) e poderão ser tomadas as medidas cabíveis pela Administração da cidade.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Página: Punições -->
+            <section id="sistema-punicao" class="page-content hidden max-w-4xl mx-auto">
+                <div class="glass-card p-8">
+                    <div class="rule-content">
+                        <h3 class="!mt-0">CAPÍTULO III – DAS SANÇÕES</h3>
+                        <p><strong>Artigo 6º</strong> – As sanções aplicáveis pela Administração incluem, mas não se limitam a:</p>
+                        <ul>
+                            <li>Advertência verbal ou escrita;</li>
+                            <li>Suspensão temporária;</li>
+                            <li>Banimento parcial (de determinadas funções);</li>
+                            <li>Banimento permanente e definitivo.</li>
+                        </ul>
+                        <p><strong>Artigo 7º</strong> – As penalidades serão aplicadas conforme análise da Administração, de acordo com a gravidade da conduta.</p>
+
+                        <h4>Análise de Provas e Contra-Provas</h4>
+                        <div class="warning-box">
+                            <p class="!mb-0 font-bold text-red-800">REQUISITO OBRIGATÓRIO DE VÍDEO</p>
+                            <p class="mt-2">Todos os clipes utilizados como <strong>prova (denúncia)</strong> ou <strong>contra-prova (defesa)</strong> devem ter, obrigatoriamente, <strong>no mínimo 2 a 3 minutos de duração</strong>.</p>
+                            <p class="text-sm mt-1">O objetivo é garantir que a administração veja todo o contexto da ação (início, meio e fim). Clipes curtos, cortados ou editados fora de contexto poderão ser desconsiderados.</p>
+                        </div>
+                        <p><strong>Prints (capturas de tela) não serão aceitos como prova principal</strong> para contestação de punições ou denúncias, servindo apenas como material de apoio ao vídeo.</p>
+
+                        <div class="flex items-center gap-4 my-6 bg-red-50 p-4 rounded-xl border border-red-100">
+                            <div class="bg-red-500 text-white font-bold px-3 py-1 rounded-lg shadow-sm">PADRÃO</div>
+                            <p class="!mb-0 text-red-800 font-medium">1 Advertência + 100 Meses de Prisão Administrativa</p>
+                        </div>
+
+                        <h4>TABELA DE PUNIÇÕES GERAIS</h4>
+                        <div class="space-y-3 mt-4">
+                            <div class="p-3 hover:bg-zinc-50 rounded-lg transition-colors border-b border-zinc-100">
+                                <span class="font-bold text-zinc-700">1. Uso indevido de chat OOC:</span> Enviar mensagens fora de contexto RP em canais errados.
+                            </div>
+                            <div class="p-3 hover:bg-zinc-50 rounded-lg transition-colors border-b border-zinc-100">
+                                <span class="font-bold text-zinc-700">2. Power Gaming:</span> Realizar ações impossíveis na vida real ou forçar situações irreais.
+                            </div>
+                            <div class="p-3 hover:bg-zinc-50 rounded-lg transition-colors border-b border-zinc-100">
+                                <span class="font-bold text-zinc-700">3. Meta Gaming:</span> Utilizar informações externas (Discord, lives, etc.) dentro do RP.
+                            </div>
+                            <div class="p-3 hover:bg-zinc-50 rounded-lg transition-colors border-b border-zinc-100">
+                                <span class="font-bold text-zinc-700">4. RDM (Random Deathmatch):</span> Matar sem motivo ou contexto de roleplay.
+                            </div>
+                            <div class="p-3 hover:bg-zinc-50 rounded-lg transition-colors border-b border-zinc-100">
+                                <span class="font-bold text-zinc-700">5. VDM (Vehicle Deathmatch):</span> Atropelar ou usar veículos como arma sem contexto RP.
+                            </div>
+                            <div class="p-3 hover:bg-zinc-50 rounded-lg transition-colors border-b border-zinc-100">
+                                <span class="font-bold text-zinc-700">6. Anti-RP:</span> Ações que quebram o sentido lógico do roleplay.
+                            </div>
+                            <div class="p-3 hover:bg-zinc-50 rounded-lg transition-colors border-b border-zinc-100">
+                                <span class="font-bold text-zinc-700">7. Combat Logging:</span> Sair do servidor durante confrontos, perseguições ou situações RP.
+                            </div>
+                            <div class="p-3 hover:bg-zinc-50 rounded-lg transition-colors border-b border-zinc-100">
+                                <span class="font-bold text-zinc-700">8. Cop Bait:</span> Provocar policiais sem motivo de roleplay.
+                            </div>
+                            <div class="p-3 hover:bg-zinc-50 rounded-lg transition-colors border-b border-zinc-100">
+                                <span class="font-bold text-zinc-700">9. Desrespeito à Staff:</span> Faltar com respeito, ironizar ou desobedecer orientações da equipe.
+                            </div>
+                            <div class="p-3 hover:bg-zinc-50 rounded-lg transition-colors border-b border-zinc-100">
+                                <span class="font-bold text-zinc-700">10. Flood ou Spam:</span> Enviar mensagens repetidas ou atrapalhar comunicações.
+                            </div>
+                            <div class="p-3 hover:bg-zinc-50 rounded-lg transition-colors border-b border-zinc-100">
+                                <span class="font-bold text-zinc-700">11. Exploração de Bug:</span> Usar falhas do jogo para benefício próprio.
+                            </div>
+                            <div class="p-3 hover:bg-zinc-50 rounded-lg transition-colors border-b border-zinc-100">
+                                <span class="font-bold text-zinc-700">12. Uso de Programas Ilegais:</span> Uso de mod menus, hacks ou scripts externos.
+                            </div>
+                            <div class="p-3 hover:bg-zinc-50 rounded-lg transition-colors border-b border-zinc-100">
+                                <span class="font-bold text-zinc-700">13. Linguagem Ofensiva ou Discriminatória:</span> Ofensas, racismo, homofobia, assédio ou ameaças.
+                            </div>
+                        </div>
+
+                        <h4 class="mt-8 mb-4 text-red-600">Infrações Graves e Punições Específicas</h4>
+                        <div class="grid gap-4">
+                            <div class="bg-red-100/50 p-4 rounded-xl border border-red-200 flex justify-between items-center">
+                                <span class="text-red-900 font-medium">Troca de tiros sem motivo (Polícia)</span>
+                                <span class="bg-red-200 text-red-800 text-xs px-2 py-1 rounded font-bold">BAN 1 DIA</span>
+                            </div>
+                            <div class="bg-red-100/50 p-4 rounded-xl border border-red-200 flex justify-between items-center">
+                                <span class="text-red-900 font-medium">Roubo de Viatura Policial</span>
+                                <span class="bg-red-600 text-white text-xs px-2 py-1 rounded font-bold">BAN PERMANENTE</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Página: Personagem -->
+            <section id="regras-personagem" class="page-content hidden max-w-4xl mx-auto">
+                <div class="glass-card p-8">
+                    <div class="rule-content">
+                        <h3 class="!mt-0">CAPÍTULO V – DA PRIVACIDADE E UTILIZAÇÃO DE DADOS</h3>
+                        <p><strong>Artigo 11º</strong> – Ao ingressar na Cidade, o cidadão autoriza a coleta, armazenamento e utilização de seus dados, áudios, imagens, vídeos e demais registros vinculados à sua participação no Servidor.</p>
+                        <p><strong>Artigo 12º</strong> – As informações poderão ser utilizadas para:</p>
+                        <ul>
+                            <li>Pesquisas internas e aprimoramento do Servidor;</li>
+                            <li>Monitoramento de condutas e prevenção de irregularidades;</li>
+                            <li>Postagens em redes sociais, materiais de divulgação e marketing oficial;</li>
+                            <li>Preservação da ordem e cumprimento das regras estabelecidas.</li>
+                        </ul>
+                        <p><strong>Artigo 13º</strong> – O cidadão declara ciência de que tais utilizações não geram qualquer direito a indenizações ou contestações contra a Administração.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Página: Segurança -->
+            <section id="seguranca-servidor" class="page-content hidden max-w-4xl mx-auto">
+                <div class="glass-card p-8">
+                    <div class="rule-content">
+                        <h3 class="!mt-0">CAPÍTULO IV – DA SEGURANÇA DO SERVIDOR</h3>
+                        <p><strong>Artigo 8º</strong> – A preservação da integridade do Servidor é prioridade máxima. O cidadão, ao aceitar estes Termos, reconhece e concorda que a Direção da Cidade poderá adotar medidas técnicas e administrativas para garantir a segurança do projeto.</p>
+                        <p><strong>Artigo 9º</strong> – Tais medidas incluem, mas não se limitam a:</p>
+                        <ul>
+                            <li>Inspeções de software e arquivos relacionados à execução do jogo;</li>
+                            <li>Solicitação de prints, gravações ou registros de atividades durante sessões de jogo;</li>
+                            <li>Acesso remoto autorizado ao dispositivo do jogador, exclusivamente para verificação de integridade e investigação de fraudes;</li>
+                            <li>Bloqueio preventivo de contas e equipamentos suspeitos de comprometer a estabilidade do Servidor.</li>
+                        </ul>
+                        <p><strong>Artigo 10º</strong> – O cidadão reconhece que tais acessos são essenciais para a segurança do Servidor, e consente de forma plena e irrevogável com sua aplicação sempre que houver necessidade.</p>
+
+                        <h3>CAPÍTULO VI – DAS RESPONSABILIDADES LEGAIS</h3>
+                        <p><strong>Artigo 14º</strong> – O cidadão compromete-se a não utilizar o Servidor como meio para práticas ilícitas ou contrárias às legislações brasileiras.</p>
+                        <p><strong>Artigo 15º</strong> – A Direção poderá cooperar com autoridades legais, caso solicitado, disponibilizando dados e registros de atividades de cidadãos envolvidos em condutas que possam configurar ilícitos penais ou civis.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Página: Empregos -->
+            <section id="empregos-legais" class="page-content hidden max-w-4xl mx-auto">
+                <div class="glass-card p-8">
+                    <div class="rule-content">
+                        <h3 class="!mt-0">O Propósito dos Empregos Legais</h3>
+                        <p>Os empregos legais (Mecânico, Taxista, Lixeiro, etc.) são a espinha dorsal da economia e da vida civil na cidade. Estas regras existem para proteger a imersão e garantir que esses empregos não sejam usados como "escudo" para atividades ilegais.</p>
+                        
+                        <h4>Regras Gerais de Empregos</h4>
+                        <ul>
+                            <li><strong>Proibido Anti-RP:</strong> É estritamente proibido usar seu status ou veículo de trabalho para cometer crimes. (Ex: Usar um táxi para fugir da polícia, usar o guincho do mecânico em uma ação).</li>
+                            <li><strong>Neutralidade (quando aplicável):</strong> Empregos como Mecânico devem manter a neutralidade durante conflitos. Você não pode se recusar a consertar o carro de um policial ou de um criminoso por causa da afiliação dele.</li>
+                            <li><strong>Uso Correto do Veículo:</strong> O veículo fornecido pelo seu trabalho (caminhão de lixo, táxi, guincho) só pode ser usado durante o seu horário de serviço e para as funções do trabalho.</li>
+                            <li><strong>"Bico" Policial/Criminoso:</strong> É proibido ser policial ou membro de facção e, ao mesmo tempo, agir ativamente em um emprego legal como mecânico ou taxista. Seu personagem deve ter um foco.</li>
+                        </ul>
+                        <div class="info-box">
+                            <p class="!mb-0">Abusar das mecânicas de um emprego legal (ex: usar um emprego para farmar dinheiro sem fazer o RP) pode resultar em advertência ou remoção do emprego.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Página: Hospital -->
+            <section id="hospital" class="page-content hidden max-w-4xl mx-auto">
+                <div class="glass-card p-8">
+                    <div class="rule-content">
+                        <h3 class="!mt-0">A Neutralidade do SAMU</h3>
+                        <p>O SAMU (Hospital) é uma organização **100% neutra** na cidade. A vida e o atendimento são as únicas prioridades. Estas regras garantem que o SAMU possa operar com segurança e eficácia.</p>
+                        
+                        <ul>
+                            <li><strong>Prioridade de Atendimento:</strong> O SAMU deve atender a todos os chamados, independentemente de quem seja (policial, civil ou criminoso). A prioridade é sempre o paciente em estado mais grave.</li>
+                            <li><strong>Imunidade em Ações:</strong> O SAMU não pode ser alvo durante ações ou trocas de tiro. Eles são uma zona neutra. Atirar em um médico é uma infração gravíssima.</li>
+                            <li><strong>Proibido "Carona":</strong> Médicos não podem dar carona para suspeitos em fuga ou ajudar na fuga de qualquer maneira.</li>
+                            <li><strong>Proibido Lootear:</strong> Médicos não podem, em hipótese alguma, lootear pacientes (mortos ou vivos).</li>
+                            <li><strong>Finalização de Ação:</strong> O SAMU só deve entrar em uma cena de tiroteio (QRT) após a polícia ou os envolvidos sinalizarem que a área está "limpa" e segura.</li>
+                        </ul>
+                        <div class="warning-box">
+                            <p class="!mb-0"><strong>Retirada de Órgãos:</strong> A prática de retirada de órgãos é proibida no servidor.</p>
+                        </div>
+                        <div class="info-box">
+                            <p class="!mb-0">Ser do SAMU é um RP de responsabilidade. O objetivo é salvar vidas e manter a neutralidade, não se envolver nos conflitos da cidade.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Página: Mecânico -->
+            <section id="mecanico" class="page-content hidden max-w-4xl mx-auto">
+                <div class="glass-card p-8">
+                    <div class="rule-content">
+                        <h3 class="!mt-0">A Neutralidade do Mecânico</h3>
+                        <p>Mecânicos são essenciais para a cidade e, assim como o SAMU, operam sob um código de <strong>neutralidade</strong>. O foco é o atendimento ao cliente e a manutenção dos veículos, não os conflitos.</p>
+                        
+                        <h4>Regras de Atendimento e Conduta</h4>
+                        <ul>
+                            <li><strong>Proibido "Escolher Lado":</strong> O mecânico não pode se recusar a atender um cliente por ele ser policial, criminoso ou de uma facção rival. O atendimento deve ser neutro.</li>
+                            <li><strong>Uso do Guincho (Veículo de Trabalho):</strong> O guincho e outros veículos da oficina são <strong>exclusivos para trabalho</strong>. É proibido usá-los para participar de fugas, bloquear passagens em ações ou para benefício próprio fora de serviço.</li>
+                            <li><strong>Proibido Atendimento em Ação:</strong> Mecânicos não devem entrar em uma zona de tiroteio (QRT) ativa para consertar ou guinchar veículos. A segurança deve ser prioridade; aguarde a liberação da cena.</li>
+                            <li><strong>Preços e Golpes:</strong> É proibido se aproveitar de jogadores (especialmente novatos) cobrando valores absurdos. A corporação deve ter uma tabela de preços ou um bom senso de valores.</li>
+                            <li><strong>Informação Privilegiada:</strong> É proibido atuar como "informante" (X9). Você não pode, por exemplo, consertar o carro de uma facção e depois ligar para a polícia e informar a localização deles (e vice-versa).</li>
+                        </ul>
+                        <div class="info-box">
+                            <p class="!mb-0">O mecânico que for pego auxiliando ativamente em um crime (ex: guinchando viaturas para atrapalhar a polícia) perderá sua licença e será punido por Anti-RP.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Página: Polícia Alistamento -->
+            <section id="policia-alistamento" class="page-content hidden max-w-4xl mx-auto">
+                <div class="glass-card p-8">
+                    <div class="rule-content">
+                        <h3 class="!mt-0">Polícia Militar: Carreira e Alistamento</h3>
+                        <div class="info-box">
+                            <p class="!mb-0">Este documento estabelece as diretrizes, regras e procedimentos para todos os membros da corporação no servidor Zona Leste RP. O ingresso e a permanência na corporação estão condicionados à aceitação e ao cumprimento integral deste regulamento.</p>
+                        </div>
+                        <h4>1. Requisitos de Alistamento e Carreira</h4>
+                        <ul>
+                            <li><strong>Idade Mínima:</strong> A idade mínima para ingresso na corporação (patentes iniciais) é de <strong>15 (quinze) anos</strong>.</li>
+                            <li><strong>Requisito de Comando:</strong> Para assumir as duas maiores patentes da corporação (Comando de Batalhão), é obrigatório ter <strong>18 (dezoito) anos completos</strong>.</li>
+                            <li><strong>Editais de Recrutamento:</strong> Os processos seletivos (Editais) para a Academia de Polícia (Soldado 2ª Classe) ocorrerão no <strong>mínimo duas vezes por mês (quinzenalmente)</strong>. As datas serão publicadas no canal oficial com antecedência.</li>
+                            <li><strong>Processo Seletivo (Edital):</strong> O ingresso não é automático. O candidato passará por:
+                                <ul>
+                                    <li>Prova Teórica: Conhecimento das regras do servidor e deste regulamento.</li>
+                                    <li>Entrevista: Avaliação psicológica e maturidade.</li>
+                                    <li>Teste de Aptidão: Testes de direção, tiro e verbalização.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Histórico Criminal do Personagem:</strong> O personagem não pode possuir antecedentes criminais graves (homicídio, tráfico, organização criminosa) no servidor para ingressar na corporação.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+             <!-- Página: Polícia Hierarquia -->
+             <section id="policia-hierarquia" class="page-content hidden max-w-4xl mx-auto">
+                <div class="glass-card p-8">
+                    <div class="rule-content">
+                        <h3 class="!mt-0">2. Hierarquia e Disciplina (O Pilar do Militarismo)</h3>
+                        <ul>
+                            <li><strong>Cadeia de Comando:</strong> A hierarquia é a espinha dorsal da PM. <strong>Nenhum subordinado deve "pular" a cadeia de comando.</strong> Problemas devem ser reportados ao seu superior imediato (Ex: Soldado reporta ao Cabo; Cabo ao Sargento).</li>
+                            <li><strong>Tratamento e Continência:</strong>
+                                <ul>
+                                    <li>Todo superior hierárquico deve ser tratado formalmente como <strong>"Senhor"</strong> ou <strong>"Senhora"</strong>.</li>
+                                    <li>Subordinados são tratados pela patente ou nome de guerra (Ex: "Soldado Silva"; "Cabo Andrade").</li>
+                                    <li>Gírias ("mano", "parça", "truta") são <strong>expressamente proibidas</strong> em serviço, especialmente via rádio.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Apresentação Pessoal (Farda):</strong> O policial é um representante da lei.
+                                <ul>
+                                    <li>A farda (uniforme) é sagrada. É proibido usar itens civis (bonés, máscaras não táticas, tênis coloridos) com a farda.</li>
+                                    <li>O corte de cabelo e a barba do personagem devem seguir o padrão militar (cabelo curto ou preso, barba feita ou aparada).</li>
+                                </ul>
+                            </li>
+                            <li><strong>Vedação ao "Bico":</strong> O policial, enquanto em serviço (em QAP), está dedicado exclusivamente à função policial. É proibido realizar atividades civis (como taxista, mecânico) fardado ou durante seu turno.</li>
+                        </ul>
+
+                        <h4>1. Postura em Redes Sociais</h4>
+                        <ul>
+                            <li>É estritamente proibido postar imagens, vídeos ou áudios da corporação (em serviço, fardado, em viaturas) em redes sociais pessoais (TikTok, Instagram, etc.) sem autorização expressa do Comando.</li>
+                            <li>É proibido o uso de mídias do servidor para denegrir a imagem da corporação, expor colegas de farda, vazar informações táticas ou discutir procedimentos internos.</li>
+                            <li>A violação desta regra será tratada como falta grave, passível de exoneração.</li>
+                        </ul>
+
+                        <h4>3. Relações com Outras Guarnições</h4>
+                        <ul>
+                            <li><strong>Respeito Mútuo:</strong> O tratamento com outras guarnições legais (SAMU, Mecânicos, etc.) deve ser sempre profissional e respeitoso. Gírias e "brincadeiras" no rádio são proibidas.</li>
+                            <li><strong>Autoridade da PM:</strong> A Polícia Militar é a autoridade máxima em cenas de crime, perímetros de segurança e situações de ordem pública. As outras guarnições devem respeitar o perímetro estabelecido pela PM.</li>
+                            <li><strong>Prioridade de Cena:</strong> Em cenas de acidente ou com feridos, o SAMU tem prioridade total no atendimento às vítimas. A PM deve garantir a segurança dos médicos e não interferir no procedimento, apenas garantir a ordem.</li>
+                            <li><strong>Conflitos:</strong> Qualquer conflito ou desentendimento com um membro de outra guarnição deve ser resolvido via rádio (COPOM) ou reportado ao superior imediato. É proibido "discutir" ou escalar conflitos em público ou no rádio.</li>
+                        </ul>
+
+                        <h4>A. Regras sobre Corrupção (Tolerância Zero)</h4>
+                        <ul>
+                            <li><strong>Proibição:</strong> É estritamente proibida qualquer forma de corrupção, incluindo, mas não se limitando a: aceitar suborno, extorquir cidadãos, liberar presos ilegalmente, "plantar" itens ilegais ou vender/desviar equipamentos da corporação.</li>
+                            <li><strong>Punição:</strong> A descoberta de corrupção resultará em exoneração imediata, banimento permanente do servidor e a inclusão do nome do indivíduo em uma "lista negra" de todas as guarnições.</li>
+                            <li><strong>Dever de Reportar:</strong> Qualquer policial que testemunhe ou tenha provas de um ato de corrupção de outro membro e não reporte imediatamente à Corregedoria será considerado cúmplice.</li>
+                        </ul>
+
+                        <h4>B. Conduta Fora de Serviço (De folga)</h4>
+                        <ul>
+                            <li><strong>Separação de Identidade:</strong> O policial, quando fora de serviço (de folga), é um cidadão comum. É proibido usar farda, viatura ou qualquer equipamento policial.</li>
+                            <li><strong>Proibição de Atividades Criminosas:</strong> Membros da corporação não podem cometer crimes graves (tráfico, roubo, sequestro) mesmo quando estão fora de serviço. A descoberta de tais atos levará à exoneração.</li>
+                            <li><strong>Porte de Arma (Folga):</strong> O porte da arma da corporação fora de serviço é proibido. O policial deve guardar seu equipamento no armário da base antes de sair de serviço.</li>
+                        </ul>
+
+                        <h4>C. Uso de Equipamentos (Cautela)</h4>
+                        <ul>
+                            <li><strong>Equipamento Pessoal:</strong> O equipamento fornecido pela corporação (arma, colete, rádio, viatura) é propriedade do Estado e deve ser usado com zelo.</li>
+                            <li><strong>Proibição de Empréstimo:</strong> É expressamente proibido emprestar ou vender qualquer equipamento da PM para cidadãos ou membros de outras guarnições.</li>
+                            <li><strong>Uso da Viatura:</strong> As viaturas são apenas para uso em serviço. É proibido usar a viatura para fins pessoais ("dar carona" a amigos, participar em corridas ou ir para casa).</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Página: Polícia Estrutura -->
+            <section id="policia-estrutura" class="page-content hidden max-w-4xl mx-auto">
+                <div class="glass-card p-8">
+                    <div class="rule-content">
+                        <h3 class="!mt-0">Policiais: Estrutura Hierárquica</h3>
+                        
+                        <div class="warning-box">
+                            <h4 class="!mt-0 !mb-2 text-red-400">Tratamento e Continência</h4>
+                            <ul class="!list-none !p-0">
+                                <li>Todo superior hierárquico deve ser tratado formalmente como <strong>"Senhor"</strong> ou <strong>"Senhora"</strong> (Ex: "Sim, Senhor Tenente"; "Permissão, Senhora Sargento").</li>
+                                <li class="!mt-2">Subordinados são tratados pela patente ou nome de guerra (Ex: "Soldado Silva").</li>
+                                <li class="!mt-2">Gírias ("mano", "parça", "truta") são <strong>expressamente proibidas</strong> em serviço.</li>
+                            </ul>
+                        </div>
+
+                        <h4>Árvore Hierárquica</h4>
+                        <div class="space-y-4 mt-6">
+                            <div>
+                                <div class="font-bold text-lg text-red-600 mb-2">Alto Comando</div>
+                                <ul class="pl-8 space-y-2 border-l-2 border-red-200">
+                                    <li><span class="bg-zinc-100 px-3 py-1 rounded-md shadow-sm">Coronel (Cmdt.)</span></li>
+                                    <li><span class="bg-zinc-100 px-3 py-1 rounded-md shadow-sm">Tenente-Coronel (Sub-Cmdt.)</span></li>
+                                </ul>
+                            </div>
+        
+                            <div>
+                                <div class="font-bold text-lg text-amber-600 mb-2">Oficiais Superiores</div>
+                                <ul class="pl-8 space-y-2 border-l-2 border-amber-200">
+                                    <li><span class="bg-zinc-100 px-3 py-1 rounded-md shadow-sm">Major</span></li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <div class="font-bold text-lg text-sky-600 mb-2">Oficiais</div>
+                                <ul class="pl-8 space-y-2 border-l-2 border-sky-200">
+                                    <li><span class="bg-zinc-100 px-3 py-1 rounded-md shadow-sm">Capitão</span></li>
+                                    <li><span class="bg-zinc-100 px-3 py-1 rounded-md shadow-sm">1º Tenente</span></li>
+                                    <li><span class="bg-zinc-100 px-3 py-1 rounded-md shadow-sm">2º Tenente</span></li>
+                                </ul>
+                            </div>
+        
+                            <div>
+                                <div class="font-bold text-lg text-zinc-600 mb-2">Praças</div>
+                                <ul class="pl-8 space-y-2 border-l-2 border-zinc-300">
+                                    <li><span class="bg-zinc-100 px-3 py-1 rounded-md shadow-sm">Aspirante-a-Oficial</span></li>
+                                    <li><span class="bg-zinc-100 px-3 py-1 rounded-md shadow-sm">Subtenente</span></li>
+                                    <li><span class="bg-zinc-100 px-3 py-1 rounded-md shadow-sm">1º Sargento</span></li>
+                                    <li><span class="bg-zinc-100 px-3 py-1 rounded-md shadow-sm">2º Sargento</span></li>
+                                    <li><span class="bg-zinc-100 px-3 py-1 rounded-md shadow-sm">3º Sargento</span></li>
+                                    <li><span class="bg-zinc-100 px-3 py-1 rounded-md shadow-sm">Cabo</span></li>
+                                    <li><span class="bg-zinc-100 px-3 py-1 rounded-md shadow-sm">Soldado 1ª Classe</span></li>
+                                    <li><span class="bg-zinc-100 px-3 py-1 rounded-md shadow-sm">Soldado 2ª Classe (Recruta)</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Página: Polícia Rádio -->
+            <section id="policia-radio" class="page-content hidden max-w-4xl mx-auto">
+                <div class="glass-card p-8">
+                    <div class="rule-content">
+                        <h3 class="!mt-0">3. Comunicação (Código Q e Padrão Rádio)</h3>
+                        <ul>
+                            <li><strong>Prioridade do Rádio:</strong> O rádio (COPOM) é para comunicação oficial. É proibido "poluir" o rádio com conversas aleatórios, música ou discussões paralelas.</li>
+                            <li><strong>Obrigatório o Código Q:</strong> Toda comunicação de rádio deve seguir o <strong>Código Q</strong> padrão da PM.
+                                <ul>
+                                    <li><strong>QAP:</strong> Na escuta / Entendido</li>
+                                    <li><strong>QSL:</strong> Entendido / Ciente</li>
+                                    <li><strong>QTH:</strong> Localização</li>
+                                    <li><strong>QRM:</strong> Interferência no rádio</li>
+                                    <li><strong>QSO:</strong> Contato (visual ou verbal)</li>
+                                    <li><strong>QRN:</strong> Ocorrência</li>
+                                    <li><strong>TKS:</strong> Obrigado</li>
+                                </ul>
+                            </li>
+                            <li><strong>Padrão de Verbalização:</strong> O rádio não é chat. A comunicação deve ser clara e concisa (Ex: "COPOM, Viatura ZL-045, QAP no Tatuapé, TKS." ou "Prioridade! Prioridade! Viatura ZL-010 solicitando QAP de apoio (reforço) em QTH... [local]... indivíduos em QSA de arma de fogo!").</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Página: Polícia POP -->
+            <section id="policia-pop" class="page-content hidden max-w-4xl mx-auto">
+                <div class="glass-card p-8">
+                    <div class="rule-content">
+                        <h3 class="!mt-0">4. Procedimentos Operacionais Padrão (POP)</h3>
+                        <ul>
+                            <li><strong>Abordagem Padrão (Fundada Suspeita):</strong> Nenhuma abordagem é aleatória.
+                                <ul>
+                                    <li>Verbalização Clara: O primeiro comando é "Polícia Militar! Mãos na cabeça, parado!".</li>
+                                    <li>Segurança Tática: A viatura deve ser usada como cobertura (desembarque tático). Um policial (Motorista) faz a segurança (P1) enquanto o outro (Comandante) realiza a abordagem (P2).</li>
+                                    <li>Busca Pessoal: A revista (busca) só ocorre <strong>após</strong> o indivíduo estar em posição segura (mãos na cabeça ou deitado).</li>
+                                </ul>
+                            </li>
+                            <li><strong>Uso Progressivo da Força (UPF):</strong> A arma de fogo é o <strong>último</strong> recurso. A progressão é:
+                                <ol>
+                                    <li>Presença Policial (a farda)</li>
+                                    <li>Verbalização (o comando)</li>
+                                    <li>Controle de Contato (uso de algemas)</li>
+                                    <li>Técnicas de Baixa Letalidade (Taser/Spark)</li>
+                                    <li>Força Letal (Arma de fogo)</li>
+                                </ol>
+                            </li>
+                            <li><strong>Regra de Engajamento (Tiro):</strong>
+                                <ul>
+                                    <li>Tiros de Advertência são PROIBIDOS. Disparar para o alto é crime e perigoso.</li>
+                                    <li>O disparo só é autorizado em <strong>legítima defesa (própria ou de terceiros)</strong>, ou seja, em resposta a uma ameaça letal iminente e real.</li>
+                                    <li>"Atirar para parar" (mirar em pneus) só é permitido se o veículo estiver sendo usado como arma (tentativa de atropelamento).</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Página: Polícia Patrulha -->
+            <section id="policia-patrulha" class="page-content hidden max-w-4xl mx-auto">
+                <div class="glass-card p-8">
+                    <div class="rule-content">
+                        <h3 class="!mt-0">5. Regras de Patrulha (Imersão Zona Leste)</h3>
+                        <ul>
+                            <li><strong>Patrulhamento por Setor:</strong> A Zona Leste é imensa. O COPOM (Central) designará setores de patrulha (Ex: Setor 1 - Itaquera; Setor 2 - Tatuapé; Setor 3 - São Mateus). As viaturas <strong>não devem sair do seu setor</strong> sem autorização expressa do COPOM ou para prestar apoio urgente (QAP de apoio).</li>
+                            <li><strong>Ponto Base (PB):</strong> Viaturas não devem apenas "rodar". Devem estabelecer <strong>"Pontos Base"</strong> - locais estratégicos de alta visibilidade (Ex: Praça Silvio Romero, entrada do Shopping Itaquera) para demonstrar presença e inibir o crime.</li>
+                        </ul>
+                        
+                        <h4 class="mt-6">Perseguições e Cercos</h4>
+                        <ul>
+                            <li><strong>Análise de Risco:</strong> Nem toda fuga deve ser perseguida. Perseguições em alta velocidade na contra-mão ou em áreas de grande movimento (Ex: Av. Radial Leste em horário de pico) devem ser <strong>evitadas ou abortadas</strong> pelo Comandante da viatura se o risco aos civis for maior que o crime cometido.</li>
+                            <li><strong>Prioridade de Cerco:</strong> A prioridade é <strong>"cercar"</strong> a área (passar o QTH para outras viaturas) e não apenas seguir o veículo.</li>
+                        </ul>
+                        <div class="warning-box">
+                            <p><strong>Regra do Cerco:</strong> O cerco policial deve ser feito com o veículo **parado**. É proibido realizar o cerco com a viatura em movimento (ex: ficar "rodando" o suspeito).</p>
+                            <p class="!mb-0"><strong>Tiro no Pneu (Cód 3):</strong> O disparo nos pneus do veículo suspeito (Cód 3) só é autorizado em último caso, especificamente se o veículo **rampar (saltar) ou capotar** durante a fuga, apresentando risco imediato.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Página: Polícia ROCAM -->
+            <section id="policia-rocam" class="page-content hidden max-w-4xl mx-auto">
+                <div class="glass-card p-8">
+                    <div class="rule-content">
+                        <h3 class="!mt-0">6. Diretrizes de Unidades Especializadas (ROCAM)</h3>
+                        <div class="info-box">
+                            <p class="!mb-0">O ingresso nessas unidades requer tempo de serviço exemplar na corporação e um processo seletivo interno (teste de aptidão tática e de tiro).</p>
+                        </div>
+                        <h4>A. ROCAM (Rondas Ostensivas com Apoio de Motocicletas)</h4>
+                        <ul>
+                            <li><strong>Missão (Foco):</strong> A ROCAM é a unidade de saturação e agilidade. Sua missão é **patrulhar** "vielas", áreas de difícil acesso para viaturas de 4 rodas, e dar a primeira resposta rápida a crimes em andamento (especialmente roubos e "saidinha" de banco).</li>
+                            <li><strong>Patrulhamento:</strong> Sempre em dupla (mínimo de 2 motos). A ROCAM é "cirúrgica", focando em locais com alto índice de roubo de veículos e tráfico de menor porte.</li>
+                            <li><strong>Abordagem (Padrão 2 Motos):</strong>
+                                <ul>
+                                    <li>A abordagem deve ser rápida e dominante. As motos formam um "V" atrás do veículo suspeito ou cercam o indivídua a pé.</li>
+                                    <li>A verbalização deve ser enérgica ("Desce da moto! Mão na cabeça!").</li>
+                                    <li>Devido à exposição, a segurança é prioridade. Em caso de troca de tiros, a ROCAM deve buscar abrigo imediato e solicitar apoio da Tática ou Viatura de Área.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Restrições:</strong>
+                                <ul>
+                                    <li>A ROCAM <strong>não</strong> transporta presos. Ela faz a detenção, algema e solicita uma Viatura de Área (Ex: Blazer, Hilux) para conduzir o indivíduo ao Distrito Policial.</li>
+                                    <li>Não é permitido uso de armamentos pesados, apenas pistolas.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Página: Polícia Tática -->
+            <section id="policia-tatica" class="page-content hidden max-w-4xl mx-auto">
+                <div class="glass-card p-8">
+                    <div class="rule-content">
+                        <h3 class="!mt-0">6. Diretrizes de Unidades Especializadas (Força Tática)</h3>
+                        <div class="info-box">
+                            <p class="!mb-0">O ingresso nessas unidades requer tempo de serviço exemplar na corporação e um processo seletivo interno (teste de aptidão tática e de tiro).</p>
+                        </div>
+                        <h4>B. FORÇA TÁTICA (Patrulhamento Tático)</h4>
+                        <ul>
+                            <li><strong>Missão (Foco):</strong> A Força Tática é a tropa de resposta a ocorrências de alto risco. É a "segunda porta" que o crime encontra. Sua missão principal é o patrulhamento em locais de alto risco (favelas, áreas de tribunal do crime) e o apoio armado às viaturas de área.</li>
+                            <li><strong>Atuação:</strong> A Tática <strong>não</strong> atende ocorrências comuns (som alto, briga de trânsito, furto simples) via COPOM. Ela só é despachada para:
+                                <ul>
+                                    <li>Roubo a banco ou carro-forte.</li>
+                                    <li>Ocorrências com reféns (primeira intervenção até a chegada de unidades superiores, como o GATE).</li>
+                                    <li>Policial em apuros (QAP de apoio prioritário).</li>
+                                    <li>Confronto armado (troca de tiros) envolvendo viaturas de área.</li>
+                                    <li>Informações de tráfico de armas ou "bonde" (comboio criminoso).</li>
+                                </ul>
+                            </li>
+                            <li><strong>Padrão de Patrulha:</strong> A viatura de Tática (geralmente Hilux ou similar, com 3 ou 4 policiais) patrulha em velocidade reduzida, com "olhos na rua". A equipe deve estar pronta para o desembarque tático imediato.</li>
+                            <li><strong>Armamento:</strong> A Tática utiliza armamento de maior calibre (fuzis, carabinas). O uso desse armamento é restrito a situações de confronto assimétrico (quando os criminosos também usam armamento pesado).</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Página: Polícia Corregedoria -->
+            <section id="policia-corregedoria" class="page-content hidden max-w-4xl mx-auto">
+                <div class="glass-card p-8">
+                    <div class="rule-content">
+                        <h3 class="!mt-0">Corregedoria (Assuntos Internos)</h3>
+                        <ul>
+                            <li><strong>Autoridade:</strong> A Corregedoria é o órgão de fiscalização interna da Polícia Militar, respondendo diretamente ao Alto Comando. Sua função é investigar denúncias de má conduta, corrupção, abuso de autoridade e quebras de regulamento por parte dos membros da corporação.</li>
+                        </ul>
+                        <div class="warning-box">
+                            <h4 class="!mt-0 !mb-2 text-red-400">Dever de Obediência (Obrigatório)</h4>
+                            <ul class="!list-none !p-0">
+                                <li>Todos os membros da corporação (PM), independentemente de patente, têm o dever absoluto e irrestrito de obedecer a qualquer ordem legal da Corregedoria (seja em abordagem, investigação ou intimação).</li>
+                                <li class="!mt-2">Recusar-se a parar, entregar equipamentos, responder a um interrogatório ou tentar obstruir uma investigação da Corregedoria resultará em exoneração imediata e possíveis sanções adicionais.</li>
+                            </ul>
+                        </div>
+                        <ul>
+                            <li><strong>Abordagem da Corregedoria:</strong> Ao ser abordado pela Corregedoria (em viatura descaracterizada ou fardada), o policial deve parar imediatamente, acatar todas as ordens de forma respeitosa e se identificar.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Página: Polícia Identificação -->
+            <section id="policia-identificacao" class="page-content hidden max-w-4xl mx-auto">
+                <div class="glass-card p-8">
+                    <div class="rule-content">
+                        <h3 class="!mt-0">Policiais: Identificação e Padrão de Nomes</h3>
+                        <p>A identificação clara e profissional é fundamental para a conduta militar. Todos os membros da corporação devem seguir um padrão de nomenclatura para manter a seriedade e a imersão.</p>
+                        
+                        <div class="warning-box">
+                            <h4 class="!mt-0 !mb-2 text-red-400">Proibição de "Vulgos"</h4>
+                            <p class="!mb-0">É estritamente proibido o uso de "vulgos" (apelidos criminais) como nome de policial. Nomes como "Treme-Treme", "Bala-Fria", "Terror" e similares são inaceitáveis e resultarão em punição.</p>
+                        </div>
+
+                        <ul>
+                            <li><strong>Padrão de Nome:</strong> O nome do personagem deve seguir o padrão de <strong>Nome e Sobrenome</strong> (ex: "João Silva", "Maria Oliveira"). Nomes de guerra (ex: "Soldado Silva") são permitidos desde que baseados no sobrenome.</li>
+                            <li><strong>Nomes Fora do Padrão:</strong> São proibidos nomes que quebrem a imersão, como nomes de famosos (ex: "Tony Stark"), personagens de ficção (ex: "Goku"), nomes com conotação de piada ou nomes compostos bizarros.</li>
+                            <li><strong>Identificação no Jogo:</strong> O policial deve, obrigatoriamente, usar sua identificação no jogo (plaqueta/ID) de forma visível e com seu nome correto durante todo o serviço.</li>
+                            <li><strong>Nome no Discord:</strong> O nome do membro no Discord da corporação deve ser facilmente identificável e corresponder ao seu nome em jogo para facilitar a comunicação e organização.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Página: Crime Ações Rua -->
+            <section id="crime-acoesrua" class="page-content hidden max-w-4xl mx-auto">
+                <div class="glass-card p-8">
+                    <div class="rule-content">
+                        <h3 class="!mt-0">REGRAS AÇÕES DE RUA GERAL</h3>
+                        <ul>
+                            <li><strong>Definição:</strong> Ações de rua são eventos que ocorrem em locais públicos.</li>
+                            <li><strong>Abordagem:</strong> Em caso de abordagem, se o bandido aceitar a ordem de parada e estacionar o veículo, ele não poderá disparar contra os policiais. Espere o processo de RP da abordagem policial, o motivo será explicado ao fim da abordagem.</li>
+                            <li><strong>Respeito:</strong> O bandido não deve exagerar na falta de respeito com qualquer jogador.</li>
+                            <li><strong>Helicóptero:</strong> O uso de helicóptero é permitido em ações de rua. Caso o helicóptero quebre ou fumacê, ele não poderá ser consertado para voltar para a ação.</li>
+                            <li><strong>Desmaiados ou mortos:</strong> Jogadores que forem desmaiados ou mortos durante uma ação, ficarão proibidos de participar da continuação desse RP.</li>
+                        </ul>
+
+                        <h4>REGRAS DE ASSALTO A VEÍCULO E PLAYER</h4>
+                        <ul>
+                            <li>Só estará permitido somente entre às 00h e 08h00 (horário do jogo).</li>
+                            <li>Veículo pode ser levado, itens podem ser retirados.</li>
+                            <li>Permitido apenas o uso de pistola.</li>
+                            <li>Bandidos: Mínimo 2 / Máximo 4.</li>
+                        </ul>
+
+                        <h4>REGRAS DE ASSALTO A VEÍCULO E PLAYER (NORTE)</h4>
+                        <ul>
+                            <li>Só estará permitido somente entre às 13h00 e 20h00 (horário do jogo).</li>
+                            <li>Veículo pode ser levado, itens podem ser retirados.</li>
+                            <li>Permitido uso de fuzil e pistola.</li>
+                            <li>Bandidos: Mínimo 2 / Máximo 4.</li>
+                        </ul>
+
+                        <h4>REGISTRADORA E ATM</h4>
+                        <ul>
+                            <li>Ação feita para priorizar fuga.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Página: PM Regulamento (Documento Oficial) -->
+            <section id="pm-regulamento" class="page-content hidden max-w-4xl mx-auto">
+                <div class="glass-card p-8">
+                    <div class="rule-content">
+                        <div class="pm-doc-header">
+                            <p>Secretaria de Segurança Pública</p>
+                            <h2>Polícia Militar do Estado de São Paulo (PMESP)</h2>
+                            <p class="text-xs font-bold mt-2">Regulamento Disciplinar e Operacional (RDO)</p>
+                        </div>
+
+                        <div class="info-box">
+                            <strong>Classificação:</strong> Uso Interno / Ostensivo<br>
+                            <strong>Vigência:</strong> Imediata
+                        </div>
+
+                        <h3>CAPÍTULO I - PILARES E FUNDAMENTOS</h3>
+                        <p><strong>Art. 1º</strong> - Este regulamento estabelece as normas rígidas de conduta, hierarquia, disciplina e procedimentos operacionais padrão (POP) a serem seguidos por todos os membros da Polícia Militar do Estado de São Paulo nesta jurisdição (Zona Leste).</p>
+                        <p><strong>Art. 2º</strong> - A Polícia Militar tem por missão a preservação da ordem pública.</p>
+                        <ul>
+                            <li><strong>Hierarquia:</strong> A espinha dorsal da PM. Nenhum subordinado deve "pular" a cadeia de comando. Problemas são reportados ao superior imediato.</li>
+                            <li><strong>Disciplina:</strong> A obediência pronta e absoluta às ordens legais.</li>
+                            <li><strong>Honra:</strong> Conduta ilibada dentro e fora de serviço.</li>
+                        </ul>
+
+                        <h3>CAPÍTULO II - ESTRUTURA HIERÁRQUICA E TRATAMENTO</h3>
+                        <p><strong>Art. 3º</strong> - A cadeia de comando deve ser respeitada rigorosamente para promoções, reportes e comunicação:</p>
+                        
+                        <div class="bg-zinc-50 p-4 rounded-lg border border-zinc-200 mb-4">
+                            <h4 class="!mt-0 text-red-700">Alto Comando</h4>
+                            <ol class="list-decimal pl-5 mb-2">
+                                <li>Coronel (Cel): Comandante Geral.</li>
+                                <li>Tenente-Coronel (Ten-Cel): Subcomandante Geral.</li>
+                            </ol>
+                            <h4 class="text-amber-700">Oficiais Superiores e Intermediários</h4>
+                            <ol class="list-decimal pl-5 mb-2" start="3">
+                                <li>Major (Maj): Oficial Superior.</li>
+                                <li>Capitão (Cap): Comandante de Companhia.</li>
+                            </ol>
+                            <h4 class="text-sky-700">Oficiais Subalternos</h4>
+                            <ol class="list-decimal pl-5 mb-2" start="5">
+                                <li>1º Tenente (1º Ten)</li>
+                                <li>2º Tenente (2º Ten)</li>
+                            </ol>
+                            <h4 class="text-zinc-700">Praças Especiais e Graduados</h4>
+                            <ol class="list-decimal pl-5" start="7">
+                                <li>Aspirante a Oficial (Asp): Estágio probatório.</li>
+                                <li>Subtenente (SubTen)</li>
+                                <li>1º Sargento (1º Sgt)</li>
+                                <li>2º Sargento (2º Sgt)</li>
+                                <li>3º Sargento (3º Sgt)</li>
+                                <li>Cabo (Cb)</li>
+                                <li>Soldado 1ª Classe (Sd 1ª Cl)</li>
+                                <li>Soldado 2ª Classe (Sd 2ª Cl / Recruta): Em treinamento.</li>
+                            </ol>
+                        </div>
+
+                        <p><strong>Art. 4º - Do Tratamento e Continência:</strong></p>
+                        <ul>
+                            <li><strong>I. Formalidade:</strong> Todo superior deve ser tratado como "Senhor" ou "Senhora" (Ex: "Sim, Senhor Capitão"; "Com licença, Senhora Sargento").</li>
+                            <li><strong>II. Nomes de Guerra:</strong> Subordinados e pares são tratados pela patente seguida do nome de guerra (Ex: "Soldado Silva").</li>
+                            <li><strong>III. Proibições:</strong> O uso de gírias ("mano", "parça", "truta", "jão") é expressamente proibido em serviço, especialmente via rádio modular.</li>
+                        </ul>
+
+                        <h3>CAPÍTULO III - IDENTIFICAÇÃO E APRESENTAÇÃO PESSOAL</h3>
+                        <p><strong>Art. 5º - Do Padrão de Nomes:</strong></p>
+                        <ul>
+                            <li><strong>I. Nomenclatura:</strong> O nome do policial deve seguir o padrão "Nome Sobrenome" (Ex: João Silva).</li>
+                            <li><strong>II. Proibições (Vulgos):</strong> É estritamente proibido o uso de apelidos criminais ou vulgos (Ex: "Treme-Treme", "Bala-Fria", "Terror"). Nomes de famosos, personagens de ficção ou com conotação de piada são vedados.</li>
+                            <li><strong>III. Identificação Visual:</strong> O policial deve usar sua identificação (ID/Plaqueta) visível durante todo o serviço. O nome no Email deve corresponder ao nome na farda.</li>
+                        </ul>
+
+                        <p><strong>Art. 6º - Do Uniforme e Aparência (Geral):</strong></p>
+                        <ul>
+                            <li><strong>I. Farda Sagrada:</strong> É proibido usar itens civis com a farda (bonés de marca, tênis coloridos, máscaras não táticas). O uniforme deve estar sempre impecável.</li>
+                        </ul>
+
+                        <h4>SEÇÃO I - MASCULINO</h4>
+                        <p><strong>Art. 7º - Do Cabelo:</strong></p>
+                        <ul>
+                            <li><strong>I. Regra Geral:</strong> Deve ser mantido curto e aparado (padrão militar). Laterais baixas (máquina 1 ou 2).</li>
+                            <li><strong>II. Proibições:</strong> Cortes desenhados, moicanos, topknots, coques ou cabelos longos.</li>
+                            <li><strong>III. Coloração:</strong> Apenas cores naturais.</li>
+                        </ul>
+                        <p><strong>Art. 8º - Da Barba (Diferenciação Hierárquica):</strong></p>
+                        <ul>
+                            <li><strong>I. Praças (Sd 2ª Cl a Subtenente):</strong> Obrigatório rosto liso (barba feita) ou apenas bigode aparado na linha do lábio. Proibido barba cerrada, cavanhaque, costeletas ou barba cheia.</li>
+                            <li><strong>II. Oficiais (Aspirante a Coronel):</strong> Proibido Barba "Lenhador" (longa e volumosa) ou desleixada.</li>
+                        </ul>
+
+                        <h4>SEÇÃO II - FEMININO</h4>
+                        <p><strong>Art. 8º - Do Cabelo e Maquiagem:</strong></p>
+                        <ul>
+                            <li><strong>I. Cabelo:</strong> O cabelo deve ser obrigatoriamente preso em coque, utilizando redinha, sem deixar fios soltos. Rabo de Cavalo permitido apenas em TFM. Coloração apenas cores naturais.</li>
+                            <li><strong>II. Maquiagem e Unhas:</strong> Maquiagem leve e discreta (tons nude/terra). Batons escuros proibidos. Unhas curtas e limpas, esmaltes claros/neutros.</li>
+                        </ul>
+
+                        <h4>SEÇÃO III - TATUAGENS E ADORNOS</h4>
+                        <p><strong>Art. 9º - Das Tatuagens:</strong> É permitida a posse de tatuagens, EXCETO em cabeça, rosto, pescoço e mãos. São ESTRITAMENTE PROIBIDAS tatuagens com alusão a ideologias extremistas, apologia ao crime ou ofensa à honra da PM.</p>
+                        <p><strong>Art. 10º - Dos Adornos:</strong> Masculino proibido brincos/piercings. Feminino permitido brincos pequenos e discretos. Óculos apenas armações discretas.</p>
+
+                        <h3>CAPÍTULO IV - DEVERES, PROIBIÇÕES E CONDUTA</h3>
+                        <p><strong>Art. 11º - Da Corrupção (Tolerância Zero):</strong> É estritamente proibida qualquer forma de corrupção. Punição: Exoneração imediata, banimento permanente da corporação ("Exílio") e inclusão na lista negra.</p>
+                        <p><strong>Art. 12º - Das Redes Sociais:</strong> Proibido postar fotos/vídeos fardado em redes sociais pessoais sem autorização. Proibido usar mídias para denegrir a corporação.</p>
+                        <p><strong>Art. 13º - Conduta Fora de Serviço:</strong> Fora de serviço, o policial é um cidadão comum. Proibido usar farda ou viatura. Proibido portar arma da corporação fora de serviço.</p>
+                        <p><strong>Art. 14º - Relações Interagências:</strong> Tratamento profissional com SAMU e Mecânicos. Em cenas com feridos, SAMU tem prioridade. Conflitos resolvidos via rádio pelos superiores.</p>
+                        <p><strong>Art. 15º - Vedações Gerais:</strong> Proibido "Bico" (trabalhos civis) fardado. Viatura apenas para serviço.</p>
+
+                        <h3>CAPÍTULO V - PROCEDIMENTOS OPERACIONAIS PADRÃO (POP)</h3>
+                        <p><strong>Art. 16º - Abordagem Policial:</strong> Verbalização clara e impositiva. Segurança tática (Motorista P1 armado, Comandante P2 aborda). Busca pessoal após rendição.</p>
+                        <p><strong>Art. 17º - Uso Progressivo da Força (UPF):</strong> 1. Presença Policial > 2. Verbalização > 3. Controle de Contato > 4. Baixa Letalidade (Taser) > 5. Força Letal.</p>
+                        <p><strong>Art. 18º - Regras de Engajamento:</strong> Tiros de advertência PROIBIDOS. Disparo letal apenas em legítima defesa. Tiro no pneu apenas se veículo usado como arma.</p>
+                        <p><strong>Art. 19º - Regras de Patrulha:</strong> Respeitar setorização. Estacionar em locais visíveis (Ponto Base).</p>
+                        <p><strong>Art. 20º - Perseguições e Cercos:</strong> Prioridade é o CERCO. Perseguições de alto risco devem ser abortadas. Cerco deve ser estático (viatura parada). Tiro no pneu (Cód 3) autorizado em último caso.</p>
+
+                        <h3>CAPÍTULO VI - UNIDADES ESPECIALIZADAS</h3>
+                        <p><strong>SEÇÃO I - ROCAM:</strong> Foco em vielas e resposta rápida. Mínimo 2 motos. Armamento apenas pistolas. Abordagem rápida e agressiva.</p>
+                        <p><strong>SEÇÃO II - FORÇA TÁTICA:</strong> Foco em ocorrências de alto risco. Despacho para roubo a banco, reféns, policial em perigo. Patrulha em baixa velocidade. Armamento pesado autorizado.</p>
+
+                        <h3>CAPÍTULO VII - CORREGEDORIA</h3>
+                        <p><strong>Art. 23º - Autoridade Suprema:</strong> Responde ao Alto Comando. Dever de obediência obrigatório. Tentar fugir ou mentir resulta em Exoneração imediata.</p>
+
+                        <h3>CAPÍTULO VIII - COMUNICAÇÃO (CÓDIGO Q)</h3>
+                        <p><strong>Art. 24º - A comunicação deve ser técnica.</strong></p>
+                        <ul>
+                            <li>QAP: Na escuta.</li>
+                            <li>QSL: Compreendido.</li>
+                            <li>QTH: Localização.</li>
+                            <li>QRV: À disposição/Pronto.</li>
+                            <li>QRR: Apoio terrestre urgente.</li>
+                            <li>10-90: Apoio Imediato (Perigo de Vida).</li>
+                        </ul>
+                        <div class="success-box mt-4">
+                            <p class="!mb-0 font-bold text-center">APROVAÇÃO: Comando Geral da Polícia Militar e Corregedoria da PMESP</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navItems = document.querySelectorAll('.nav-item[data-page], [data-page]');
+            const pages = document.querySelectorAll('.page-content');
+            const accordionToggles = document.querySelectorAll('.accordion-toggle');
+            const profileFilter = document.getElementById('profile-filter');
+            const allNavElements = document.querySelectorAll('[data-profile]');
+            const contentArea = document.querySelector('#content-area > div');
+            const scrollTopButton = document.getElementById('scrollTopButton');
+            const pageTitle = document.getElementById('page-title');
+            const dockButtons = document.querySelectorAll('.dock-btn');
+            
+            // Mobile Interaction
+            const mobileToggle = document.getElementById('mobile-toggle');
+            const dockContainer = document.getElementById('dock-container');
+            const navContainer = document.getElementById('nav-container');
+            const closeNav = document.getElementById('close-nav');
+
+            let activePage = 'inicio';
+
+            function filterMenu() {
+                const selectedProfile = profileFilter.value;
+                allNavElements.forEach(item => {
+                    const itemProfiles = item.dataset.profile.split(' ');
+                    if (selectedProfile === 'todos' || itemProfiles.includes(selectedProfile)) {
+                        item.classList.remove('hidden');
+                    } else {
+                        item.classList.add('hidden');
+                    }
+                });
+            }
+
+            window.handleDockClick = function(pageId) {
+                showPage(pageId);
+                dockButtons.forEach(btn => btn.classList.remove('active'));
+                const targetBtn = document.querySelector(`.dock-btn[onclick*="${pageId}"]`);
+                if(targetBtn) targetBtn.classList.add('active');
+            }
+
+            function showPage(pageId, titleText) {
+                // Esconde todas as páginas
+                pages.forEach(page => page.classList.add('hidden'));
+                
+                // Mostra a página alvo
+                const pageToShow = document.getElementById(pageId);
+                if (pageToShow) {
+                    pageToShow.classList.remove('hidden');
+                    pageToShow.animate([
+                        { opacity: 0, transform: 'translateY(10px)' },
+                        { opacity: 1, transform: 'translateY(0)' }
+                    ], { duration: 300, easing: 'ease-out' });
+                }
+
+                // Atualiza estado ativo na navegação
+                document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+                const activeNav = document.querySelector(`.nav-item[data-page="${pageId}"]`);
+                if (activeNav) activeNav.classList.add('active');
+
+                // Atualiza negrito no submenu
+                document.querySelectorAll('div[data-page]').forEach(el => el.classList.remove('text-zinc-900', 'font-bold'));
+                const activeSub = document.querySelector(`div[data-page="${pageId}"]`);
+                if(activeSub && !activeSub.classList.contains('nav-item')) {
+                    activeSub.classList.add('text-zinc-900', 'font-bold');
+                }
+
+                // Define título
+                if(!titleText) {
+                    if (pageId === 'pm-regulamento') titleText = 'Regulamento Interno PM';
+                    else if (activeNav) titleText = activeNav.textContent.trim();
+                    else if (activeSub) titleText = activeSub.textContent.trim();
+                }
+                if(titleText) pageTitle.textContent = titleText;
+
+                // Scroll para o topo
+                if (contentArea) contentArea.scrollTo({ top: 0, behavior: 'smooth' });
+
+                // Fecha menus em mobile após clicar
+                if(window.innerWidth < 768) {
+                   dockContainer.classList.add('hidden');
+                   navContainer.classList.add('hidden');
+                }
+            }
+
+            navItems.forEach(item => {
+                item.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const pageId = item.dataset.page;
+                    const text = item.textContent.trim();
+                    showPage(pageId, text);
+                });
+            });
+
+            accordionToggles.forEach(toggle => {
+                toggle.addEventListener('click', (e) => {
+                    const content = toggle.nextElementSibling;
+                    const arrow = toggle.querySelector('.accordion-arrow');
+                    
+                    content.classList.toggle('hidden');
+                    if(arrow) arrow.classList.toggle('rotate-180');
+                });
+            });
+
+            if(profileFilter) {
+                profileFilter.addEventListener('change', filterMenu);
+            }
+
+            if (contentArea) {
+                contentArea.addEventListener('scroll', () => {
+                    if (contentArea.scrollTop > 300) {
+                        scrollTopButton.classList.remove('hidden');
+                    } else {
+                        scrollTopButton.classList.add('hidden');
+                    }
+                });
+                scrollTopButton.addEventListener('click', () => {
+                    contentArea.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+            
+            // Mobile Logic
+            if(mobileToggle) {
+                mobileToggle.addEventListener('click', () => {
+                   dockContainer.classList.toggle('hidden');
+                   navContainer.classList.toggle('hidden');
+                   // Garante que o dock aparece como flex quando não hidden
+                   if(!dockContainer.classList.contains('hidden')) {
+                       dockContainer.classList.add('flex');
+                       navContainer.classList.add('flex');
+                   }
+                });
+            }
+            
+            if(closeNav) {
+                closeNav.addEventListener('click', () => {
+                    dockContainer.classList.add('hidden');
+                    navContainer.classList.add('hidden');
+                });
+            }
+
+            filterMenu();
+        });
+    </script>
+</body>
+</html>
